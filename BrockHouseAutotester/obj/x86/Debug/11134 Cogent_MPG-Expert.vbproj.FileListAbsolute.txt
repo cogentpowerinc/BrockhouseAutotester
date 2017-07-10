@@ -1,0 +1,17 @@
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\bin\Debug\11134 Cogent_MPG-Expert.exe
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\bin\Debug\11134 Cogent_MPG-Expert.pdb
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\bin\Debug\11134 Cogent_MPG-Expert.xml
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\bin\Debug\DataExchangeInterface.dll
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\bin\Debug\LabelPrinter.dll
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\bin\Debug\Logger.dll
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\11134 Cogent_MPG-Expert.vbprojResolveAssemblyReference.cache
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\GuiOperator.resources
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\GuiPrinter.resources
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\Resources.resources
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\Controls.resources
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\Settings.GuiSettings.resources
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\11134 Cogent_MPG-Expert.vbproj.GenerateResource.Cache
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\11134 Cogent_MPG-Expert.exe
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\11134 Cogent_MPG-Expert.xml
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\obj\x86\Debug\11134 Cogent_MPG-Expert.pdb
+C:\Software_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\bin\Debug\LabelPrinter.pdb

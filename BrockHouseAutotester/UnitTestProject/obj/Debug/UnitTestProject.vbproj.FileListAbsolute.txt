@@ -1,0 +1,3 @@
+c:\SOFTWARE_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\UnitTestProject\obj\Debug\UnitTestProject.vbprojResolveAssemblyReference.cache
+c:\SOFTWARE_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\UnitTestProject\obj\Debug\UnitTestProject.Resources.resources
+c:\SOFTWARE_VBNet\MPG200\Customization\11134 Cogent_MPG-Expert\UnitTestProject\obj\Debug\UnitTestProject.vbproj.GenerateResource.Cache

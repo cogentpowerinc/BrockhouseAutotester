@@ -1,0 +1,178 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+11134Cogent_MPG-Expert
+</name>
+</assembly>
+<members>
+<member name="P:My.Resources.Controls.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:My.Resources.Controls.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="P:My.Resources.Controls.printCatNo">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Cat No ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.printClass">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Class ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.printCustomerPoNo">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Customer PO No ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.printExcitingCurrent">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Exciting Current ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.printLoss">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Loss ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.printPartDescription">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Part Description ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.printSerialNo">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Serial No ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.printTitle">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Cogent Power Inc. ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sAcceptResultsWithError">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Accepting Results with Error? ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sAmps">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Amps ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sATrms">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die AT-rms ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sCheckHarnessSettingsDgCore">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You are using harness ({0}), which is different from standard DgCore harness. Press CANCEL to change harness settings. Press OK to start the measurement. ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sCheckHarnessTitle">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Check harness ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sCheckHarnessWorkOrder">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Work order number of turns {0} does not match harness setting {1}. Press CANCEL to change harness settings. Press OK to start the measurement. ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sHarness">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Harness:  ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sResult">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Current result:  ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sStatusFluxDensityOutOfRange">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Error! Induction reached is out of range!
+Check harness cable and Shunt2 fuse! ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sStatusMeasurementFinished">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Measurement finished ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sStatusMeasurementInProgress">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Measurement in progress ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sStatusMeasurementInterrupted">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Measurement interrupted ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sStatusMeasurementNotStarted">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Measurement not started ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sStatusPleaseCheckWeight">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Your inserted weight is out of range. Please compare to nominal weight. ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sStatusReady">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Ready for operation ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sVolts">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Volts ähnelt.
+</summary>
+</member><member name="P:My.Resources.Controls.sWatts">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Watts ähnelt.
+</summary>
+</member><member name="T:My.Resources.Controls">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
+</member><member name="P:My.Resources.Resources.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:My.Resources.Resources.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="P:My.Resources.Resources._007_PrintView_48x48_72">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:My.Resources.Resources._112_RefreshArrow_Blue_48x48_72">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:My.Resources.Resources.BM_Logo_E">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:My.Resources.Resources.MPG_EXPERT">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+</summary>
+</member><member name="P:My.Resources.Resources.Printer">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:My.Resources.Resources.settings_48">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:My.Resources.Resources.workOrder_CPI_CatalogueNo">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Catalogue # ähnelt.
+</summary>
+</member><member name="P:My.Resources.Resources.workOrder_CustomerName">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Customer name ähnelt.
+</summary>
+</member><member name="P:My.Resources.Resources.workOrder_CustomerPurchaseOrderNo">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Customer # ähnelt.
+</summary>
+</member><member name="P:My.Resources.Resources.workOrder_OrderQuantity">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Order quantity ähnelt.
+</summary>
+</member><member name="T:My.Resources.Resources">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
+</member>
+</members>
+</doc>
