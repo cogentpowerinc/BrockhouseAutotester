@@ -1,9 +1,9 @@
 ﻿
 Imports DataElements
-Imports PLC   'Added by VERGEER
-Imports PLC.CommManager  'Added by VERGEER
+'Imports PLC   'Added by VERGEER
+'Imports PLC.CommManager  'Added by VERGEER
 Imports System.Windows.Threading 'Added by VERGEER
-
+Imports PLC
 
 Public Class GuiOperator
     Private _BrockhausBlue As Color = System.Drawing.Color.FromArgb(0, 56, 103)
@@ -421,7 +421,9 @@ Public Class GuiOperator
 #Region "AB Communication"  ' Entire Section added by VERGEER
     Private Shared FullUpdateCheckTmr As New DispatcherTimer()
     Private Sub InitComms()
-        Channels.AddChannel(New Channel(PLCDriverType.AllenBradley_CLX, "AT_1", "192.168.1.244", "0", 3000, 4))
+
+
+        CommManager.Channels.AddChannel(New CommManager.Channel(CommManager.PLCDriverType.AllenBradley_CLX, "AT_1", "192.168.1.244", "0", 3000, 4))
         FullUpdateCheckTmr.Interval = TimeSpan.FromMilliseconds(100)
         AddHandler FullUpdateCheckTmr.Tick, AddressOf FullUpdateCheckTmr_Tick
 
@@ -440,7 +442,11 @@ Public Class GuiOperator
     Private Sub DummyTimer_Tick(sender As Object, e As EventArgs)    'To be deleted 
 
         If ABCommunication.ToPLC.TestInProgress Then
+            ABCommunication.ToPLC.ActualCoreLoss = 101.101
+            ABCommunication.ToPLC.ActualAmpTurns = 201.201
+            ABCommunication.ToPLC.TestInProgress = False
             ABCommunication.ToPLC.TestComplete = True
+
             DummyTimer.Stop()
         Else
             ABCommunication.ToPLC.TestInProgress = True
@@ -450,7 +456,7 @@ Public Class GuiOperator
     End Sub
     Private Sub FullUpdateCheckTmr_Tick(sender As Object, e As EventArgs)
         Dim Success As Boolean = False
-        Dim Index As Int32 = 0
+
 
 
         Success = ABCommunication.AutoTesterInterface.PeekPLC()
@@ -466,42 +472,64 @@ Public Class GuiOperator
                         'WAIT SERVER DATA  THEN SET READY TO TEST
                         ABCommunication.ToPLC.ReadyToTest = True
                         If ABCommunication.FromPLC.InitTest Then
-                            'START TEST
-                            ABCommunication.ToPLC.TestInProgress = True
-                            DummyTimer.Start()
+                            If ABCommunication.ToPLC.TestInProgress = False Then
+                                DummyTimer.Start()   ' Init Test.... dummy for now for testing purposes.
+                            Else
+                                If ABCommunication.ToPLC.TestComplete Or ABCommunication.ToPLC.TestFailedToComplete Then
+                                    ' TEST COMPLETE... 
+                                    If ABCommunication.FromPLC.ResultResponse = 0 Then    ' To be added.... mod for server results....
+                                        ABCommunication.ToPLC.ServerResult = 1
+                                    ElseIf ABCommunication.FromPLC.ResultResponse = 1 Then
+                                        ABCommunication.ToPLC.ServerResult = 1
+                                    ElseIf ABCommunication.FromPLC.ResultResponse = 2 Then
+                                        ABCommunication.ToPLC.ServerResult = 2
+                                    ElseIf ABCommunication.FromPLC.ResultResponse = 2 Then
+                                        ABCommunication.ToPLC.ServerResult = 3
+                                    ElseIf ABCommunication.FromPLC.ResultResponse = 2 Then
+                                        ABCommunication.ToPLC.ServerResult = 4
+                                    ElseIf ABCommunication.FromPLC.ResultResponse = 2 Then
+                                        ABCommunication.ToPLC.ServerResult = 5
+                                    Else
+                                        ABCommunication.ToPLC.Faulted = True
+                                        ABCommunication.ToPLC.ErrorMsg = "Result Response Not Supported"
+                                    End If
+                                End If
+
+                            End If
                         End If
                     Else
-                        ABCommunication.ToPLC.Faulted = False
+                        ABCommunication.ToPLC.Faulted = True
                         ABCommunication.ToPLC.ErrorMsg = "No Weight and/or Temp And/or Serial Number At Init"
 
                     End If
 
-
-                Else
-                    ABCommunication.ToPLC.ReadyForData = False
-                    ABCommunication.ToPLC.ReadyToTest = False
-
-                    ABCommunication.ToPLC.FetchingFromServer = False
-                    ABCommunication.ToPLC.TestInProgress = False
-                    ABCommunication.ToPLC.TestComplete = False
-                    ABCommunication.ToPLC.TestFailedToComplete = False
-                    If ABCommunication.FromPLC.Reset Then
-                        ABCommunication.ToPLC.ErrorMsg = "RESETING"
-                    Else
-                        ABCommunication.ToPLC.ErrorMsg = "Not In Auto"
-                    End If
-                    ABCommunication.ToPLC.Faulted = False
-                    ABCommunication.ToPLC.ActualCoreLoss = -999.99
-                    ABCommunication.ToPLC.ActualAmpTurns = -999.99
-                    ABCommunication.ToPLC.ServerResult = -99
-                    DummyTimer.stop()
                 End If
+            Else
+                ABCommunication.ToPLC.ReadyForData = False
+                ABCommunication.ToPLC.ReadyToTest = False
 
+                ABCommunication.ToPLC.FetchingFromServer = False
+                ABCommunication.ToPLC.TestInProgress = False
+                ABCommunication.ToPLC.TestComplete = False
+                ABCommunication.ToPLC.TestFailedToComplete = False
+                If ABCommunication.FromPLC.Reset Then
+                    ABCommunication.ToPLC.ErrorMsg = "RESETING"
+                Else
+                    ABCommunication.ToPLC.ErrorMsg = "Not In Auto"
+                End If
+                ABCommunication.ToPLC.Faulted = False
+                ABCommunication.ToPLC.ActualCoreLoss = -999.99
+                ABCommunication.ToPLC.ActualAmpTurns = -999.99
+                ABCommunication.ToPLC.ServerResult = -99
+                DummyTimer.Stop()
             End If
+
+
 
 
             Success = ABCommunication.AutoTesterInterface.PokePLC()
         End If
+
 
 
     End Sub
