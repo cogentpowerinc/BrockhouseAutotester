@@ -78,24 +78,11 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ABCommunication">
+      <HintPath>..\ABCommunication\bin\Debug\ABCommunication.dll</HintPath>
+    </Reference>
     <Reference Include="DataExchangeInterface">
       <HintPath>dll\DataExchangeInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="DeployLX.Licensing.v5, Version=5.0.2000.0, Culture=neutral, PublicKeyToken=798276055709c98a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files (x86)\INGEAR.NET\v5.0\Licensing\DeployLX.Licensing.v5.dll</HintPath>
-    </Reference>
-    <Reference Include="INGEAR.NET.ABLink, Version=6.0.0.0, Culture=neutral, PublicKeyToken=f5734254522ab13d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\OvenTool\OvenTool\OvenTool\INGEAR.NET.ABLink.dll</HintPath>
-    </Reference>
-    <Reference Include="INGEAR.NET.Interfaces, Version=3.0.2010.714, Culture=neutral, PublicKeyToken=ab5727b8d3226c58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\OvenTool\OvenTool\OvenTool\INGEAR.NET.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="INGEAR.NET.Logix, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\OvenTool\OvenTool\OvenTool\INGEAR.NET.Logix.dll</HintPath>
     </Reference>
     <Reference Include="LabelPrinter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -107,6 +94,7 @@
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
@@ -117,6 +105,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -131,12 +120,6 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABComms\ABDriver.vb" />
-    <Compile Include="ABComms\Communications.vb" />
-    <Compile Include="ABComms\SLCMLCDriver.vb" />
-    <Compile Include="Common\Constants.vb" />
-    <Compile Include="Common\Core.vb" />
-    <Compile Include="Common\Debug.vb" />
     <Compile Include="DataElements\WorkOrderDgCore.vb" />
     <Compile Include="DataElements\WorkOrderToroid.vb" />
     <Compile Include="GuiPrinter.Designer.vb">
@@ -231,12 +214,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="nab6rt5015178.lic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="nlx6rt5015178.lic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\MPG EXPERT.ico" />
   </ItemGroup>
   <ItemGroup>

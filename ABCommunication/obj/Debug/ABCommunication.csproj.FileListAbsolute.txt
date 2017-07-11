@@ -1,0 +1,11 @@
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\nab6rt5015178.lic
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\nlx6rt5015178.lic
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\ABCommunication.dll
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\ABCommunication.pdb
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\DeployLX.Licensing.v5.dll
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\INGEAR.NET.ABLink.dll
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\INGEAR.NET.Interfaces.dll
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\INGEAR.NET.Logix.dll
+C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.csprojResolveAssemblyReference.cache
+C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.dll
+C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.pdb
