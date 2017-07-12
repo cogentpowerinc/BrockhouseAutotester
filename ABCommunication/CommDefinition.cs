@@ -1,13 +1,7 @@
 ﻿using Common;
 using PLC;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace ABCommunication
@@ -27,6 +21,7 @@ namespace ABCommunication
                 if (_IsOnline != value)
                 {
                     _IsOnline = value;
+                    PrimaryVariables.MasterLiveDataMode.State = value;
                 }
             }
         }
@@ -285,18 +280,21 @@ namespace ABCommunication
         #endregion
 
         #region Heartbeat Region
-        public string _Heartbeat_Address = "{Ch_AT_1_Ch}{Adrs_PROGRAM:Tester.BrockhouseInterface.FromCogent.Heartbeat_Adrs}";
+        private string _Heartbeat_Address = "{Ch_AT_1_Ch}{Adrs_PROGRAM:Tester.BrockhouseInterface.FromCogent.Heartbeat_Adrs}";
         private bool _Heartbeat = false;
-        public bool HeartBeatChanged = false;
+        public event EventHandler HeartBeat_Changed;
+        protected virtual void HeartBeatStatusUpdate()
+        {
+            if (HeartBeat_Changed != null) HeartBeat_Changed(this, EventArgs.Empty);
+        }
         public bool Heartbeat
         {
             get
             {
                 _Heartbeat = PLC.CommManager.GetPLCValue_BOOL(_Heartbeat_Address, out Success);
                 if (_Heartbeat != Heartbeat)
-                    HeartBeatChanged = true;
-                else
-                    HeartBeatChanged = false;
+                    HeartBeatStatusUpdate();
+               
                 return _Heartbeat;
             }
             set
@@ -634,71 +632,83 @@ namespace ABCommunication
     static class myPLCTools
     {
         private static DispatcherTimer UpdateTmr = new DispatcherTimer();
-        private static DispatcherTimer HeartBeatTmr = new DispatcherTimer();
+        private static DispatcherTimer HeartBeat_Late_Tmr = new DispatcherTimer();
         private static bool PLCHeartbeat = false;
         private static bool PLCHeartbeat_Last = false;
         public static void ElectroCardiogramMachine()
         {
-            bool PLCHeartbeat = FromPLC.Heartbeat;
-
-        }
-        public static bool Initialize()
-        {
-            if (LoadConfig())
-                SaveConfig();
-
-            HeartBeatTmr.Interval = TimeSpan.FromSeconds(5);
-            UpdateTmr.Interval = TimeSpan.FromMilliseconds(MyPLC.Comm.UpdateInterval_ms);
-            MyPLC. Comm.IsOnline = Core.PingTest_byIPAddress(MyPLC.Comm.IPAddress);
-
             if (MyPLC.Comm.IsOnline)
+            {
+                bool PLCHeartbeat = MyPLC.FromPLC.Heartbeat;
+                
+            }
+        }
+        public static bool Initialize(string _path, string _CommFile, string _InputFile, string _OutputFile)
+        {
+            if (LoadConfig(_path,_CommFile,_InputFile,_OutputFile))
+                SaveConfig(_path, _CommFile, _InputFile, _OutputFile);
+
+           
+            MyPLC.Comm.IsOnline = Core.PingTest_byIPAddress(MyPLC.Comm.IPAddress);
+
+            if (MyPLC.Comm.IsOnline && CommManager.Channels.ChannelsList.Count==0)
                 CommManager.Channels.AddChannel(new
                     CommManager.Channel(MyPLC.Comm.DriverType, MyPLC.Comm.Name, MyPLC.Comm.IPAddress, MyPLC.Comm.SlotNum, MyPLC.Comm.Timeout, MyPLC.Comm.CPUType));
             else
                 return false;
-
+     
+            HeartBeat_Late_Tmr.Interval = TimeSpan.FromSeconds(5);
+            HeartBeat_Late_Tmr.Start();
+            HeartBeat_Late_Tmr.Tick += HeartBeat_Late_Tmr_Tick;
+            UpdateTmr.Interval = TimeSpan.FromMilliseconds(MyPLC.Comm.UpdateInterval_ms);
+            UpdateTmr.Tick += UpdateTmr_Tick;
+            MyPLC.FromPLC.HeartBeat_Changed += FromPLC_HeartBeat_Changed;
 
             return true;
-
         }
-        public static bool SaveCommConfig(string _path, string _CommFile, string _InputFile, string _OutputFile)
+
+        private static void FromPLC_HeartBeat_Changed(object sender, EventArgs e)
+        {
+            HeartBeat_Late_Tmr.Start();
+        }
+
+        private static void UpdateTmr_Tick(object sender, EventArgs e)
+        {
+            MyPLC.ToPLC.HeartbeatEcho = !MyPLC.ToPLC.HeartbeatEcho;
+        }
+
+        private static void HeartBeat_Late_Tmr_Tick(object sender, EventArgs e)
+        {
+            MyPLC.Comm.IsOnline = false;
+            HeartBeat_Late_Tmr.Stop();
+           
+        }
+
+        public static bool SaveConfig(string _path, string _CommFile, string _InputFile, string _OutputFile)
         {
             try
             {
-                if (!Directory.Exists(FileLocations.ProjectInfoPath))
-                    Directory.CreateDirectory(FileLocations.ProjectInfoPath);
+                if (!Directory.Exists(_path))
+                    Directory.CreateDirectory(_path);
 
-                myProgConfig.Channel = new ChannelDefine();
-
-
-                PLC.CommManager.Channel myChannel = PLC.CommManager.Channels.GetChannel(CurrentChannels[0]);
-                ChannelDefine myDefine = new ChannelDefine();
-                myProgConfig.Channel.Name = myChannel.Name;
-                myProgConfig.Channel.DriverType = myChannel.DriverType;
-                myProgConfig.Channel.Name = myChannel.Name;
-                myProgConfig.Channel.IPAddress = myChannel.IPAdress;
-                myProgConfig.Channel.SlotNum = myChannel.Slot;
-                myProgConfig.Channel.Timeout = myChannel.TimeOutTime;
-
-
-
-                myProgConfig.SaveTime = DateTime.Now;
-
-                XMLTools.ToXML<ProgramConfig>(myProgConfig, FileLocations.ProjectInfoPath + FileLocations.ProjectConfigFile);
-                return ReturnResult.Success;
+                
+                XMLTools.ToXML<CommDefinition_Comms>(MyPLC.Comm, _path + _CommFile);
+                XMLTools.ToXML<CommDefinition_Input>(MyPLC.FromPLC, _path + _InputFile);
+                XMLTools.ToXML<CommDefinition_Output>(MyPLC.ToPLC, _path + _OutputFile);
+                return true;
             }
-            catch { return ReturnResult.Failed; }
+            catch { return  false; }
 
         }
-        public static bool LoadCommConfig(string _path, string _path1, string _path2)
+        public static bool LoadConfig(string _path, string _CommFile, string _InputFile, string _OutputFile)
         {
-            if (File.Exists(_path)&& File.Exists(_path1)&& File.Exists(_path2))
+            if (File.Exists(_path + _CommFile) && File.Exists(_path + _InputFile) && File.Exists(_path + _OutputFile))
             {
                 try
                 {
-                    MyPLC.Comm = XMLTools.FromXML<CommDefinition_Comms>(_path);
-                    MyPLC.Comm = XMLTools.FromXML<CommDefinition_Comms>(_path1);
-                    MyPLC.Comm = XMLTools.FromXML<CommDefinition_Comms>(_path2);
+                    MyPLC.Comm = XMLTools.FromXML<CommDefinition_Comms>(_path + _CommFile);
+                    MyPLC.FromPLC = XMLTools.FromXML<CommDefinition_Input>(_path + _InputFile);
+                    MyPLC.ToPLC = XMLTools.FromXML<CommDefinition_Output>(_path + _OutputFile);
                     return true;
                 }
                 catch

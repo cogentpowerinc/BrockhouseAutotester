@@ -7,7 +7,7 @@ namespace Common
     /// <summary>
     /// 
     /// </summary>
-    public class ProgramConstants
+    public class PrimaryVariables
     {
 
         public static Int32 LoginLevel = 0;

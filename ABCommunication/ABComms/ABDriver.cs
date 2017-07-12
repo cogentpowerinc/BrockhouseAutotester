@@ -130,7 +130,7 @@ namespace ABDriver
         {
             bool Complete = false;
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -153,13 +153,13 @@ namespace ABDriver
                     if (ResultCode.QUAL_GOOD != MyTag.QualityCode)
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to write Data.");
-                        ProgramConstants.ABDataWriteErrors += 1;
+                        PrimaryVariables.ABDataWriteErrors += 1;
                     }
                 }
                 catch (Exception ex)
                 {
                     DebugTools.UpdateActionList("AB Driver, "+ex.Message);
-                    ProgramConstants.ABDataWriteErrors += 1;
+                    PrimaryVariables.ABDataWriteErrors += 1;
                 }
             }
             return Complete;
@@ -179,7 +179,7 @@ namespace ABDriver
         {
             string Value = "";
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -193,7 +193,7 @@ namespace ABDriver
                 if (ReadResponse != ResultCode.E_SUCCESS)
                 {
                     DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                    ProgramConstants.ABDataReadErrors += 1;
+                    PrimaryVariables.ABDataReadErrors += 1;
                 }
 
                 if (ResultCode.QUAL_GOOD == MyTag.QualityCode)
@@ -201,7 +201,7 @@ namespace ABDriver
                 else
                 {
                     DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                    ProgramConstants.ABDataReadErrors += 1;
+                    PrimaryVariables.ABDataReadErrors += 1;
                 }
             }
             return Value;
@@ -219,7 +219,7 @@ namespace ABDriver
             _value = false;
             bool xSuccess = false;
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -238,9 +238,9 @@ namespace ABDriver
                     if (ReadResponse != ResultCode.E_SUCCESS)
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                        ProgramConstants.ABDataReadErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataReadErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                     if (ResultCode.QUAL_GOOD == MyTag.QualityCode)
                     {
@@ -250,15 +250,15 @@ namespace ABDriver
                     else
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                        ProgramConstants.ABDataReadErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataReadErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                 }
                 else
                 {
                     DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                    ProgramConstants.ABDataReadErrors += 1;
+                    PrimaryVariables.ABDataReadErrors += 1;
                 }
             }
             return xSuccess;
@@ -276,7 +276,7 @@ namespace ABDriver
             _value = "";
             bool xSuccess = false;
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -297,9 +297,9 @@ namespace ABDriver
                     if (ReadResponse != ResultCode.E_SUCCESS)
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                        ProgramConstants.ABDataReadErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataReadErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                     if (ResultCode.QUAL_GOOD == MyTag.QualityCode)
                     {
@@ -310,9 +310,9 @@ namespace ABDriver
                     {
                         _value = "Unable to Read From PLC";
                         DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                        ProgramConstants.ABDataReadErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataReadErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                 }
                 else
@@ -340,7 +340,7 @@ namespace ABDriver
             _value = 0;
             bool xSuccess = false;
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -361,9 +361,9 @@ namespace ABDriver
                     if (ReadResponse != ResultCode.E_SUCCESS)
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                        ProgramConstants.ABDataReadErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataReadErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                     if (ResultCode.QUAL_GOOD == MyTag.QualityCode)
                     {
@@ -373,9 +373,9 @@ namespace ABDriver
                     else
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                        ProgramConstants.ABDataReadErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataReadErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                 }
                 else
@@ -398,7 +398,7 @@ namespace ABDriver
             _value = 0;
             bool xSuccess = false;
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -419,9 +419,9 @@ namespace ABDriver
                     if (ReadResponse != ResultCode.E_SUCCESS)
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                        ProgramConstants.ABDataReadErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataReadErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                     if (ResultCode.QUAL_GOOD == MyTag.QualityCode)
                     {
@@ -432,9 +432,9 @@ namespace ABDriver
                     else
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                        ProgramConstants.ABDataReadErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataReadErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                 }
                 else
@@ -457,7 +457,7 @@ namespace ABDriver
         {
             bool Complete = false;
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -489,26 +489,26 @@ namespace ABDriver
                         if (ResultCode.QUAL_GOOD != MyTag.QualityCode)
                         {
                             DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                            ProgramConstants.ABDataWriteErrors += 1;
-                            if (ProgramConstants.ABDataReadErrors > 3)
-                                ProgramConstants.MasterLiveDataMode.State = false;
+                            PrimaryVariables.ABDataWriteErrors += 1;
+                            if (PrimaryVariables.ABDataReadErrors > 3)
+                                PrimaryVariables.MasterLiveDataMode.State = false;
                         }
 
                     }
                     catch (Exception ex)
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Read Data, "+ex.Message);
-                        ProgramConstants.ABDataWriteErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataWriteErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                 }
                 else
                 {
                     DebugTools.UpdateActionList("AB Driver, Unable to Read Data");
-                    ProgramConstants.ABDataWriteErrors += 1;
-                    if (ProgramConstants.ABDataReadErrors > 3)
-                        ProgramConstants.MasterLiveDataMode.State = false;
+                    PrimaryVariables.ABDataWriteErrors += 1;
+                    if (PrimaryVariables.ABDataReadErrors > 3)
+                        PrimaryVariables.MasterLiveDataMode.State = false;
                 }
             }
             return Complete;
@@ -525,7 +525,7 @@ namespace ABDriver
         {
             bool Complete = false;
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -557,26 +557,26 @@ namespace ABDriver
                         if (ResultCode.QUAL_GOOD != MyTag.QualityCode)
                         {
                             DebugTools.UpdateActionList("AB Driver, Unable to Write Data");
-                            ProgramConstants.ABDataWriteErrors += 1;
-                            if (ProgramConstants.ABDataReadErrors > 3)
-                                ProgramConstants.MasterLiveDataMode.State = false;
+                            PrimaryVariables.ABDataWriteErrors += 1;
+                            if (PrimaryVariables.ABDataReadErrors > 3)
+                                PrimaryVariables.MasterLiveDataMode.State = false;
                         }
 
                     }
                     catch (Exception ex)
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Write Data, " + ex.Message);
-                        ProgramConstants.ABDataWriteErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataWriteErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                 }
                 else
                 {
                     DebugTools.UpdateActionList("AB Driver, Unable to Write Data");
-                    ProgramConstants.ABDataWriteErrors += 1;
-                    if (ProgramConstants.ABDataReadErrors > 3)
-                        ProgramConstants.MasterLiveDataMode.State = false;
+                    PrimaryVariables.ABDataWriteErrors += 1;
+                    if (PrimaryVariables.ABDataReadErrors > 3)
+                        PrimaryVariables.MasterLiveDataMode.State = false;
                 }
             }
             return Complete;
@@ -593,7 +593,7 @@ namespace ABDriver
         {
             bool Complete = false;
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -625,26 +625,26 @@ namespace ABDriver
                         if (ResultCode.QUAL_GOOD != MyTag.QualityCode)
                         {
                             DebugTools.UpdateActionList("AB Driver, Unable to Write Data");
-                            ProgramConstants.ABDataWriteErrors += 1;
-                            if (ProgramConstants.ABDataReadErrors > 3)
-                                ProgramConstants.MasterLiveDataMode.State = false;
+                            PrimaryVariables.ABDataWriteErrors += 1;
+                            if (PrimaryVariables.ABDataReadErrors > 3)
+                                PrimaryVariables.MasterLiveDataMode.State = false;
                         }
 
                     }
                     catch (Exception ex)
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Write Data, " + ex.Message);
-                        ProgramConstants.ABDataWriteErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataWriteErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                 }
                 else
                 {
                     DebugTools.UpdateActionList("AB Driver, Unable to Write Data");
-                    ProgramConstants.ABDataWriteErrors += 1;
-                    if (ProgramConstants.ABDataReadErrors > 3)
-                        ProgramConstants.MasterLiveDataMode.State = false;
+                    PrimaryVariables.ABDataWriteErrors += 1;
+                    if (PrimaryVariables.ABDataReadErrors > 3)
+                        PrimaryVariables.MasterLiveDataMode.State = false;
                 }
             }
             return Complete;
@@ -661,7 +661,7 @@ namespace ABDriver
         {
             bool Complete = false;
 
-            if (ProgramConstants.MasterLiveDataMode.State)
+            if (PrimaryVariables.MasterLiveDataMode.State)
             {
                 Tag MyTag = new Tag();
 
@@ -693,26 +693,26 @@ namespace ABDriver
                         if (ResultCode.QUAL_GOOD != MyTag.QualityCode)
                         {
                             DebugTools.UpdateActionList("AB Driver, Unable to Write Data");
-                            ProgramConstants.ABDataWriteErrors += 1;
-                            if (ProgramConstants.ABDataReadErrors > 3)
-                                ProgramConstants.MasterLiveDataMode.State = false;
+                            PrimaryVariables.ABDataWriteErrors += 1;
+                            if (PrimaryVariables.ABDataReadErrors > 3)
+                                PrimaryVariables.MasterLiveDataMode.State = false;
                         }
 
                     }
                     catch (Exception ex)
                     {
                         DebugTools.UpdateActionList("AB Driver, Unable to Write Data, " + ex.Message);
-                        ProgramConstants.ABDataWriteErrors += 1;
-                        if (ProgramConstants.ABDataReadErrors > 3)
-                            ProgramConstants.MasterLiveDataMode.State = false;
+                        PrimaryVariables.ABDataWriteErrors += 1;
+                        if (PrimaryVariables.ABDataReadErrors > 3)
+                            PrimaryVariables.MasterLiveDataMode.State = false;
                     }
                 }
                 else
                 {
                     DebugTools.UpdateActionList("AB Driver, Unable to Write Data");
-                    ProgramConstants.ABDataWriteErrors += 1;
-                    if (ProgramConstants.ABDataReadErrors > 3)
-                        ProgramConstants.MasterLiveDataMode.State = false;
+                    PrimaryVariables.ABDataWriteErrors += 1;
+                    if (PrimaryVariables.ABDataReadErrors > 3)
+                        PrimaryVariables.MasterLiveDataMode.State = false;
                 }
             }
             return Complete;
@@ -774,7 +774,7 @@ namespace ABDriver
         /// <returns></returns>
         private static string BuildABAddressInfo(string _channelName, ABTagClass _tagClass)
         {
-              return ProgramConstants.ChannelHeader + _channelName + ProgramConstants.ChannelFooter /*+ ProgramConstants.ABClassHeader + (ABTagClass)(int)_tagClass + ProgramConstants.ABClassFooter*/ + ProgramConstants.AddressHeader;
+              return PrimaryVariables.ChannelHeader + _channelName + PrimaryVariables.ChannelFooter /*+ ProgramConstants.ABClassHeader + (ABTagClass)(int)_tagClass + ProgramConstants.ABClassFooter*/ + PrimaryVariables.AddressHeader;
         }
 
 
@@ -838,7 +838,7 @@ namespace ABDriver
                                 MyTagClass = ABTagClass.SINT;
                             else
                                 MyTagClass = ABTagClass.NotFound;
-                            string sAddress = BuildABAddressInfo(_channelName, MyTagClass) + item.Name + ProgramConstants.AddressFooter;
+                            string sAddress = BuildABAddressInfo(_channelName, MyTagClass) + item.Name + PrimaryVariables.AddressFooter;
 
                             PLCVariableNames.Add(sAddress);
                         }

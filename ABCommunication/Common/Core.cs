@@ -11,10 +11,10 @@ namespace Common
         {
             string channel = "";
             int Start, End;
-            if (_address.Contains(ProgramConstants.ChannelHeader) && _address.Contains(ProgramConstants.ChannelFooter))
+            if (_address.Contains(PrimaryVariables.ChannelHeader) && _address.Contains(PrimaryVariables.ChannelFooter))
             {
-                Start = _address.IndexOf(ProgramConstants.ChannelHeader, 0) + ProgramConstants.ChannelHeader.Length;
-                End = _address.IndexOf(ProgramConstants.ChannelFooter, Start);
+                Start = _address.IndexOf(PrimaryVariables.ChannelHeader, 0) + PrimaryVariables.ChannelHeader.Length;
+                End = _address.IndexOf(PrimaryVariables.ChannelFooter, Start);
                 channel = _address.Substring(Start, End - Start);
             }
             else
@@ -29,10 +29,10 @@ namespace Common
         {
             string tagAddress = "";
             int Start, End;
-            if (_address.Contains(ProgramConstants.AddressHeader) && _address.Contains(ProgramConstants.AddressFooter))
+            if (_address.Contains(PrimaryVariables.AddressHeader) && _address.Contains(PrimaryVariables.AddressFooter))
             {
-                Start = _address.IndexOf(ProgramConstants.AddressHeader, 0) + ProgramConstants.AddressHeader.Length;
-                End = _address.IndexOf(ProgramConstants.AddressFooter, Start);
+                Start = _address.IndexOf(PrimaryVariables.AddressHeader, 0) + PrimaryVariables.AddressHeader.Length;
+                End = _address.IndexOf(PrimaryVariables.AddressFooter, Start);
                 tagAddress = _address.Substring(Start, End - Start);
             }
             else
