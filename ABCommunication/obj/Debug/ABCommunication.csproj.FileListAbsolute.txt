@@ -8,3 +8,4 @@ C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\INGEAR.NET.Interfaces.d
 C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\INGEAR.NET.Logix.dll
 C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.dll
 C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.pdb
+C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.csprojResolveAssemblyReference.cache

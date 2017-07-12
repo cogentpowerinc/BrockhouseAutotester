@@ -1,4 +1,3 @@
-C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Debug\11134 Cogent_MPG-Expert.vbprojResolveAssemblyReference.cache
 C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Debug\GuiOperator.resources
 C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Debug\GuiPrinter.resources
 C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Debug\Resources.resources
@@ -21,3 +20,4 @@ C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Debug\ABCommunication.pd
 C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Debug\11134 Cogent_MPG-Expert.exe
 C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Debug\11134 Cogent_MPG-Expert.xml
 C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Debug\11134 Cogent_MPG-Expert.pdb
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Debug\11134 Cogent_MPG-Expert.vbprojResolveAssemblyReference.cache

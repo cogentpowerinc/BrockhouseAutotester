@@ -33,6 +33,7 @@ Partial Class GuiOperator
         Me.dgvResults = New System.Windows.Forms.DataGridView()
         Me.btnStart = New System.Windows.Forms.Button()
         Me.gbPrepare = New System.Windows.Forms.GroupBox()
+        Me.Btn_AutoManualMode = New System.Windows.Forms.Button()
         Me.tbNumberOfCoreTested = New System.Windows.Forms.TextBox()
         Me.lblNumberOfCores = New System.Windows.Forms.Label()
         Me.tbCurrentHarness = New System.Windows.Forms.TextBox()
@@ -178,6 +179,7 @@ Partial Class GuiOperator
         'gbPrepare
         '
         Me.gbPrepare.BackColor = System.Drawing.SystemColors.Control
+        Me.gbPrepare.Controls.Add(Me.Btn_AutoManualMode)
         Me.gbPrepare.Controls.Add(Me.tbNumberOfCoreTested)
         Me.gbPrepare.Controls.Add(Me.lblNumberOfCores)
         Me.gbPrepare.Controls.Add(Me.tbCurrentHarness)
@@ -203,6 +205,16 @@ Partial Class GuiOperator
         Me.gbPrepare.Size = New System.Drawing.Size(529, 236)
         Me.gbPrepare.TabIndex = 0
         Me.gbPrepare.TabStop = False
+        '
+        'Btn_AutoManualMode
+        '
+        Me.Btn_AutoManualMode.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Btn_AutoManualMode.Location = New System.Drawing.Point(203, 66)
+        Me.Btn_AutoManualMode.Name = "Btn_AutoManualMode"
+        Me.Btn_AutoManualMode.Size = New System.Drawing.Size(170, 83)
+        Me.Btn_AutoManualMode.TabIndex = 12
+        Me.Btn_AutoManualMode.Text = "AUTO MODE"
+        Me.Btn_AutoManualMode.UseVisualStyleBackColor = False
         '
         'tbNumberOfCoreTested
         '
@@ -595,5 +607,5 @@ Partial Class GuiOperator
     Friend WithEvents tbNumberOfCoreTested As System.Windows.Forms.TextBox
     Friend WithEvents lblNumberOfCores As System.Windows.Forms.Label
     Friend WithEvents pbLogo As System.Windows.Forms.PictureBox
-
+    Friend WithEvents Btn_AutoManualMode As Button
 End Class

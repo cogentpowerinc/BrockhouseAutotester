@@ -1,9 +1,8 @@
 ﻿
 Imports DataElements
-'Imports PLC   'Added by VERGEER
-'Imports PLC.CommManager  'Added by VERGEER
+Imports PLC   'Added by VERGEER
 Imports System.Windows.Threading 'Added by VERGEER
-Imports PLC
+
 
 Public Class GuiOperator
     Private _BrockhausBlue As Color = System.Drawing.Color.FromArgb(0, 56, 103)
@@ -41,17 +40,19 @@ Public Class GuiOperator
 
 
 
-
+        InitComms()   'Added by VERGEER
+        ControlModeIsAutomatic = True   'Added by VERGEER
+        ChangeControlMode()     'Added by VERGEER
 
 
     End Sub
-    Private Sub GuiOperator_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub GuiOperator_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         EndComms() 'Added by VERGEER
         _core.CloseMPGexpert()
 
     End Sub
 
-    Private Sub tbWorkOrder_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles tbWorkOrder.KeyDown
+    Private Sub tbWorkOrder_KeyDown(sender As System.Object, e As KeyEventArgs) Handles tbWorkOrder.KeyDown
         If Me.AcceptButton Is Nothing AndAlso e.KeyCode = Keys.Enter Then RefreshWorkOrder()
     End Sub
     Private Sub tbWorkOrder_TextChanged(sender As Object, e As EventArgs) Handles tbWorkOrder.TextChanged
@@ -59,7 +60,7 @@ Public Class GuiOperator
         Me.AcceptButton = Nothing
     End Sub
 
-    Private Sub tbSerialNumber_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles tbSerialNumber.KeyDown
+    Private Sub tbSerialNumber_KeyDown(sender As System.Object, e As KeyEventArgs) Handles tbSerialNumber.KeyDown
         If e.KeyCode <> Keys.Enter Then Exit Sub
 
         dgvResults.ClearSelection()
@@ -83,7 +84,7 @@ Public Class GuiOperator
         tbWeight.Clear()
     End Sub
 
-    Private Sub tbWeight_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles tbWeight.KeyDown
+    Private Sub tbWeight_KeyDown(sender As System.Object, e As KeyEventArgs) Handles tbWeight.KeyDown
         If e.KeyCode <> Keys.Enter Then Exit Sub
 
         StartMeasurement()
@@ -424,7 +425,7 @@ Public Class GuiOperator
 
 
         CommManager.Channels.AddChannel(New CommManager.Channel(CommManager.PLCDriverType.AllenBradley_CLX, "AT_1", "192.168.1.244", "0", 3000, 4))
-        FullUpdateCheckTmr.Interval = TimeSpan.FromMilliseconds(100)
+        FullUpdateCheckTmr.Interval = TimeSpan.FromMilliseconds(30)
         AddHandler FullUpdateCheckTmr.Tick, AddressOf FullUpdateCheckTmr_Tick
 
 
@@ -461,22 +462,32 @@ Public Class GuiOperator
 
         Success = ABCommunication.AutoTesterInterface.PeekPLC()
         If Success Then
-            ABCommunication.FromPLC.AutoMode = ABCommunication.ToPLC.InAuto
+        ABCommunication.ToPLC.InAuto=     ABCommunication.FromPLC.AutoMode 
 
             If ABCommunication.ToPLC.InAuto And ABCommunication.FromPLC.Reset = False Then
                 ABCommunication.ToPLC.ReadyForData = True
 
+                'set up display
+                tbWorkOrder.Text = ABCommunication.FromPLC.WorkOrder
+                tbSerialNumber.Text = ABCommunication.FromPLC.SerialNumber
+                tbWeight.Text = ABCommunication.FromPLC.Weight.ToString
+
+                RefreshWorkOrder()
+                lblCurrentResult_update()
+
                 If ABCommunication.FromPLC.InitTest Then
                     If ABCommunication.FromPLC.Weight > 0.01 And ABCommunication.FromPLC.Temp < 0.01 And ABCommunication.FromPLC.SerialNumber = "" Then
-                        '  GET SERVER DATA
-                        'WAIT SERVER DATA  THEN SET READY TO TEST
+                        '  '   GET SERVER DATA
+                        '   WAIT SERVER DATA  THEN SET READY TO TEST
                         ABCommunication.ToPLC.ReadyToTest = True
                         If ABCommunication.FromPLC.InitTest Then
                             If ABCommunication.ToPLC.TestInProgress = False Then
                                 DummyTimer.Start()   ' Init Test.... dummy for now for testing purposes.
+                                '   StartMeasurement()   '  <-------------------------------------------------------------------   Actual INIT  -- MUST BE ENABLED
+
                             Else
                                 If ABCommunication.ToPLC.TestComplete Or ABCommunication.ToPLC.TestFailedToComplete Then
-                                    ' TEST COMPLETE... 
+                                    '  TEST COMPLETE... 
                                     If ABCommunication.FromPLC.ResultResponse = 0 Then    ' To be added.... mod for server results....
                                         ABCommunication.ToPLC.ServerResult = 1
                                     ElseIf ABCommunication.FromPLC.ResultResponse = 1 Then
@@ -514,6 +525,12 @@ Public Class GuiOperator
                 ABCommunication.ToPLC.TestFailedToComplete = False
                 If ABCommunication.FromPLC.Reset Then
                     ABCommunication.ToPLC.ErrorMsg = "RESETING"
+                    tbWorkOrder.Text = ""
+                    tbSerialNumber.Text = ""
+                    tbWeight.Text = ""
+
+                    RefreshWorkOrder()
+                    lblCurrentResult_update()
                 Else
                     ABCommunication.ToPLC.ErrorMsg = "Not In Auto"
                 End If
@@ -539,6 +556,45 @@ Public Class GuiOperator
     End Sub
 
 
+    Private Shared ControlModeIsAutomatic As New Boolean()
+    Private Sub btn_AutoManMode_Click(sender As Object, e As EventArgs) Handles Btn_AutoManualMode.Click
+        ControlModeIsAutomatic = Not (ControlModeIsAutomatic)
+        ChangeControlMode()
+    End Sub
+
+    Private Sub ChangeControlMode()
+
+        If ControlModeIsAutomatic Then
+            Btn_AutoManualMode.BackColor = Color.LightGreen
+            Btn_AutoManualMode.Text = "AUTOMODE MODE"
+            tbWorkOrder.Enabled = False
+            tbSerialNumber.Enabled = False
+            tbWeight.Enabled = False
+            btnAccept.Enabled = False
+            btnAbandon.Enabled = False
+            btnOverwrite.Enabled = False
+            btnReprocessed.Enabled = False
+            btnRemade.Enabled = False
+            btnStart.Enabled = False
+            btnStop.Enabled = False
+
+        Else
+            Btn_AutoManualMode.BackColor = Color.LightBlue
+            Btn_AutoManualMode.Text = "MANUAL MODE"
+            tbWorkOrder.Enabled = True
+            tbSerialNumber.Enabled = True
+            tbWeight.Enabled = True
+            btnAccept.Enabled = True
+            btnAbandon.Enabled = True
+            btnOverwrite.Enabled = True
+            btnReprocessed.Enabled = True
+            btnRemade.Enabled = True
+            btnStart.Enabled = True
+            btnStop.Enabled = True
+        End If
+
+
+    End Sub
 
 
 #End Region

@@ -79,17 +79,6 @@ namespace Common
 
 }
 
-public enum ReturnResult
-{
-    Success,
-    SuccessWithWarnings,
-    Failed,
-    FailedWithErrors,
-    FileNotFound,
-    FileLoadError,
-    FileCorupt,
-
-}
 
 
 
