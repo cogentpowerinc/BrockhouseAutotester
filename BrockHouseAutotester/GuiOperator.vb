@@ -2,7 +2,7 @@
 Imports DataElements
 Imports PLC   'Added by VERGEER
 Imports System.Windows.Threading 'Added by VERGEER
-
+Imports ABCommunication
 
 Public Class GuiOperator
     Private _BrockhausBlue As Color = System.Drawing.Color.FromArgb(0, 56, 103)
@@ -47,7 +47,7 @@ Public Class GuiOperator
 
     End Sub
     Private Sub GuiOperator_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        EndComms() 'Added by VERGEER
+        CommManager.ShutDownABDriver() 'Added by VERGEER
         _core.CloseMPGexpert()
 
     End Sub
@@ -420,111 +420,127 @@ Public Class GuiOperator
     End Sub
 
 #Region "AB Communication"  ' Entire Section added by VERGEER
-    Private Shared FullUpdateCheckTmr As New DispatcherTimer()
+
+
+    Private Shared JobCheck_Tmr As New DispatcherTimer()
     Private Sub InitComms()
 
+        myPLCTools.Initialize("C:\\CogentRobot\\", "ABComms.xml", "ABInputs.xml", "ABOutputs.xml")
 
-        CommManager.Channels.AddChannel(New CommManager.Channel(CommManager.PLCDriverType.AllenBradley_CLX, "AT_1", "192.168.1.244", "0", 3000, 4))
-        FullUpdateCheckTmr.Interval = TimeSpan.FromMilliseconds(30)
-        AddHandler FullUpdateCheckTmr.Tick, AddressOf FullUpdateCheckTmr_Tick
+        JobCheck_Tmr.Interval = TimeSpan.FromMilliseconds(30)
+        AddHandler JobCheck_Tmr.Tick, AddressOf JobCheckTmr_Tick
 
-
-        FullUpdateCheckTmr.Start()
-
+        JobCheck_Tmr.Start()
 
         DummyTimer.Interval = TimeSpan.FromMilliseconds(100)
         AddHandler DummyTimer.Tick, AddressOf DummyTimer_Tick
+        AddHandler MyPLC.FromPLC.HeartBeat_Changed, AddressOf HeartbeatChanged
+
+
+
 
 
 
     End Sub
+
+
+    Private Sub HeartbeatChanged(sender As Object, e As EventArgs)
+        rb_HeartBeat.Checked = MyPLC.FromPLC.Heartbeat
+    End Sub
+
 
     Private Shared DummyTimer As New DispatcherTimer()  'To be deleted
     Private Sub DummyTimer_Tick(sender As Object, e As EventArgs)    'To be deleted 
 
-        If ABCommunication.ToPLC.TestInProgress Then
-            ABCommunication.ToPLC.ActualCoreLoss = 101.101
-            ABCommunication.ToPLC.ActualAmpTurns = 201.201
-            ABCommunication.ToPLC.TestInProgress = False
-            ABCommunication.ToPLC.TestComplete = True
+        If MyPLC.ToPLC.TestInProcess Then
+            MyPLC.ToPLC.ActualCoreLoss = 101.101
+            MyPLC.ToPLC.ActualAmpTurns = 201.201
+            MyPLC.ToPLC.TestInProcess = False
+            MyPLC.ToPLC.TestComplete = True
 
             DummyTimer.Stop()
         Else
-            ABCommunication.ToPLC.TestInProgress = True
+            MyPLC.ToPLC.TestInProcess = True
         End If
 
 
     End Sub
-    Private Sub FullUpdateCheckTmr_Tick(sender As Object, e As EventArgs)
+    Private Sub JobCheckTmr_Tick(sender As Object, e As EventArgs)
         Dim Success As Boolean = False
 
+        If (MyPLC.Comm.IsOnline) Then
 
 
-        Success = ABCommunication.AutoTesterInterface.PeekPLC()
-        If Success Then
-        ABCommunication.ToPLC.InAuto=     ABCommunication.FromPLC.AutoMode 
+            MyPLC.ToPLC.InAuto = MyPLC.FromPLC.AutoMode
 
-            If ABCommunication.ToPLC.InAuto And ABCommunication.FromPLC.Reset = False Then
-                ABCommunication.ToPLC.ReadyForData = True
+
+            If MyPLC.ToPLC.InAuto And MyPLC.FromPLC.Reset = False Then
+                MyPLC.ToPLC.ReadyForData = True
 
                 'set up display
-                tbWorkOrder.Text = ABCommunication.FromPLC.WorkOrder
-                tbSerialNumber.Text = ABCommunication.FromPLC.SerialNumber
-                tbWeight.Text = ABCommunication.FromPLC.Weight.ToString
+                tbWorkOrder.Text = MyPLC.FromPLC.WorkOrder
+                tbSerialNumber.Text = MyPLC.FromPLC.SerialNumber
+                tbWeight.Text = MyPLC.FromPLC.Weight.ToString
 
                 RefreshWorkOrder()
                 lblCurrentResult_update()
 
-                If ABCommunication.FromPLC.InitTest Then
-                    If ABCommunication.FromPLC.Weight > 0.01 And ABCommunication.FromPLC.Temp < 0.01 And ABCommunication.FromPLC.SerialNumber = "" Then
+                If MyPLC.FromPLC.InitTest Then
+                    If MyPLC.FromPLC.Weight > 0.01 And MyPLC.FromPLC.Temp < 0.01 And MyPLC.FromPLC.SerialNumber = "" Then
                         '  '   GET SERVER DATA
                         '   WAIT SERVER DATA  THEN SET READY TO TEST
-                        ABCommunication.ToPLC.ReadyToTest = True
-                        If ABCommunication.FromPLC.InitTest Then
-                            If ABCommunication.ToPLC.TestInProgress = False Then
+                        MyPLC.ToPLC.ReadyToTest = True
+                        If MyPLC.FromPLC.InitTest Then
+                            If MyPLC.ToPLC.TestInProcess = False Then
                                 DummyTimer.Start()   ' Init Test.... dummy for now for testing purposes.
                                 '   StartMeasurement()   '  <-------------------------------------------------------------------   Actual INIT  -- MUST BE ENABLED
 
                             Else
-                                If ABCommunication.ToPLC.TestComplete Or ABCommunication.ToPLC.TestFailedToComplete Then
+                                If MyPLC.ToPLC.TestComplete Or MyPLC.ToPLC.TestFailedToComplete Then
                                     '  TEST COMPLETE... 
-                                    If ABCommunication.FromPLC.ResultResponse = 0 Then    ' To be added.... mod for server results....
-                                        ABCommunication.ToPLC.ServerResult = 1
-                                    ElseIf ABCommunication.FromPLC.ResultResponse = 1 Then
-                                        ABCommunication.ToPLC.ServerResult = 1
-                                    ElseIf ABCommunication.FromPLC.ResultResponse = 2 Then
-                                        ABCommunication.ToPLC.ServerResult = 2
-                                    ElseIf ABCommunication.FromPLC.ResultResponse = 2 Then
-                                        ABCommunication.ToPLC.ServerResult = 3
-                                    ElseIf ABCommunication.FromPLC.ResultResponse = 2 Then
-                                        ABCommunication.ToPLC.ServerResult = 4
-                                    ElseIf ABCommunication.FromPLC.ResultResponse = 2 Then
-                                        ABCommunication.ToPLC.ServerResult = 5
+                                    If MyPLC.FromPLC.ResultResponse = 0 Then    ' To be added.... mod for server results....
+                                        MyPLC.ToPLC.ServerResult = 0
+                                    ElseIf MyPLC.FromPLC.ResultResponse = 1 Then
+                                        btnEvaluation(Result.StateT.Accept)
+                                        Me.AcceptButton = Nothing
+                                        MyPLC.ToPLC.ServerResult = 1
+                                    ElseIf MyPLC.FromPLC.ResultResponse = 2 Then
+                                        btnEvaluation(Result.StateT.Abandon)
+                                        MyPLC.ToPLC.ServerResult = 2
+                                    ElseIf MyPLC.FromPLC.ResultResponse = 3 Then
+                                        btnEvaluation(Result.StateT.Overwrite)
+                                        MyPLC.ToPLC.ServerResult = 3
+                                    ElseIf MyPLC.FromPLC.ResultResponse = 4 Then
+                                        btnEvaluation(Result.StateT.Reprocessed)
+                                        MyPLC.ToPLC.ServerResult = 4
+                                    ElseIf MyPLC.FromPLC.ResultResponse = 5 Then
+                                        btnEvaluation(Result.StateT.Remade)
+                                        MyPLC.ToPLC.ServerResult = 5
                                     Else
-                                        ABCommunication.ToPLC.Faulted = True
-                                        ABCommunication.ToPLC.ErrorMsg = "Result Response Not Supported"
+                                        MyPLC.ToPLC.Faulted = True
+                                        MyPLC.ToPLC.ErrorMsg = "Result Response Not Supported"
                                     End If
                                 End If
 
                             End If
                         End If
                     Else
-                        ABCommunication.ToPLC.Faulted = True
-                        ABCommunication.ToPLC.ErrorMsg = "No Weight and/or Temp And/or Serial Number At Init"
+                        MyPLC.ToPLC.Faulted = True
+                        MyPLC.ToPLC.ErrorMsg = "No Weight and/or Temp And/or Serial Number At Init"
 
                     End If
 
                 End If
             Else
-                ABCommunication.ToPLC.ReadyForData = False
-                ABCommunication.ToPLC.ReadyToTest = False
+                MyPLC.ToPLC.ReadyForData = False
+                MyPLC.ToPLC.ReadyToTest = False
 
-                ABCommunication.ToPLC.FetchingFromServer = False
-                ABCommunication.ToPLC.TestInProgress = False
-                ABCommunication.ToPLC.TestComplete = False
-                ABCommunication.ToPLC.TestFailedToComplete = False
-                If ABCommunication.FromPLC.Reset Then
-                    ABCommunication.ToPLC.ErrorMsg = "RESETING"
+                MyPLC.ToPLC.FetchingFromServer = False
+                MyPLC.ToPLC.TestInProcess = False
+                MyPLC.ToPLC.TestComplete = False
+                MyPLC.ToPLC.TestFailedToComplete = False
+                If MyPLC.FromPLC.Reset Then
+                    MyPLC.ToPLC.ErrorMsg = "RESETING"
                     tbWorkOrder.Text = ""
                     tbSerialNumber.Text = ""
                     tbWeight.Text = ""
@@ -532,28 +548,22 @@ Public Class GuiOperator
                     RefreshWorkOrder()
                     lblCurrentResult_update()
                 Else
-                    ABCommunication.ToPLC.ErrorMsg = "Not In Auto"
+                    MyPLC.ToPLC.ErrorMsg = "Not In Auto"
                 End If
-                ABCommunication.ToPLC.Faulted = False
-                ABCommunication.ToPLC.ActualCoreLoss = -999.99
-                ABCommunication.ToPLC.ActualAmpTurns = -999.99
-                ABCommunication.ToPLC.ServerResult = -99
+                MyPLC.ToPLC.Faulted = False
+                MyPLC.ToPLC.ActualCoreLoss = -999.99
+                MyPLC.ToPLC.ActualAmpTurns = -999.99
+                MyPLC.ToPLC.ServerResult = -99
                 DummyTimer.Stop()
             End If
 
 
 
-
-            Success = ABCommunication.AutoTesterInterface.PokePLC()
         End If
 
 
-
     End Sub
 
-    Private Sub EndComms()
-        CommManager.ShutDownABDriver()
-    End Sub
 
 
     Private Shared ControlModeIsAutomatic As New Boolean()
@@ -577,7 +587,9 @@ Public Class GuiOperator
             btnRemade.Enabled = False
             btnStart.Enabled = False
             btnStop.Enabled = False
-
+            myPLCTools.CommEnabled = True
+            myPLCTools.Initialize("C:\\CogentRobot\\", "ABComms.xml", "ABInputs.xml", "ABOutputs.xml")
+            _core.StopMeasurement()
         Else
             Btn_AutoManualMode.BackColor = Color.LightBlue
             Btn_AutoManualMode.Text = "MANUAL MODE"
@@ -591,6 +603,9 @@ Public Class GuiOperator
             btnRemade.Enabled = True
             btnStart.Enabled = True
             btnStop.Enabled = True
+            myPLCTools.CommEnabled = False
+            myPLCTools.CommShutDown()
+            _core.StopMeasurement()
         End If
 
 

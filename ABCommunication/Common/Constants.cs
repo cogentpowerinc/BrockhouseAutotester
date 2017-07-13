@@ -10,11 +10,10 @@ namespace Common
     public class PrimaryVariables
     {
 
-        public static Int32 LoginLevel = 0;
+       
         public const string ChannelHeader = "{Ch_";
         public const string ChannelFooter = "_Ch}";
-        //public const string ABClassHeader = "{TT_";
-        //public const string ABClassFooter = "_TT}";
+       
         public const string AddressHeader = "{Adrs_";
         public const string AddressFooter = "_Adrs}";
 
@@ -53,7 +52,8 @@ namespace Common
             set
             {
                 _State = value;
-                StatusChange();
+                if (!_State)
+                    StatusChange();
             }
         }
     }

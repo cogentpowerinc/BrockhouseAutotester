@@ -68,6 +68,7 @@ Partial Class GuiOperator
         Me.tsbPrintSetup = New System.Windows.Forms.ToolStripButton()
         Me.tsbSettings = New System.Windows.Forms.ToolStripButton()
         Me.pbLogo = New System.Windows.Forms.PictureBox()
+        Me.rb_HeartBeat = New System.Windows.Forms.RadioButton()
         Me.gbWorkOrderInfo.SuspendLayout()
         Me.gbResults.SuspendLayout()
         CType(Me.dgvResults, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,6 +180,7 @@ Partial Class GuiOperator
         'gbPrepare
         '
         Me.gbPrepare.BackColor = System.Drawing.SystemColors.Control
+        Me.gbPrepare.Controls.Add(Me.rb_HeartBeat)
         Me.gbPrepare.Controls.Add(Me.Btn_AutoManualMode)
         Me.gbPrepare.Controls.Add(Me.tbNumberOfCoreTested)
         Me.gbPrepare.Controls.Add(Me.lblNumberOfCores)
@@ -532,6 +534,17 @@ Partial Class GuiOperator
         Me.pbLogo.TabIndex = 1
         Me.pbLogo.TabStop = False
         '
+        'rb_HeartBeat
+        '
+        Me.rb_HeartBeat.AutoSize = True
+        Me.rb_HeartBeat.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.rb_HeartBeat.Location = New System.Drawing.Point(352, 123)
+        Me.rb_HeartBeat.Name = "rb_HeartBeat"
+        Me.rb_HeartBeat.Size = New System.Drawing.Size(14, 13)
+        Me.rb_HeartBeat.TabIndex = 85
+        Me.rb_HeartBeat.TabStop = True
+        Me.rb_HeartBeat.UseVisualStyleBackColor = False
+        '
         'GuiOperator
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -608,4 +621,5 @@ Partial Class GuiOperator
     Friend WithEvents lblNumberOfCores As System.Windows.Forms.Label
     Friend WithEvents pbLogo As System.Windows.Forms.PictureBox
     Friend WithEvents Btn_AutoManualMode As Button
+    Friend WithEvents rb_HeartBeat As RadioButton
 End Class

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "11134 Cogent_MPG-Expert", "11134 Cogent_MPG-Expert.vbproj", "{353C1073-D49F-4294-BC14-25C69329DF5D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CEFC1784-833A-4E27-BAE0-429295FED4B5} = {CEFC1784-833A-4E27-BAE0-429295FED4B5}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCommunication", "..\ABCommunication\ABCommunication.csproj", "{CEFC1784-833A-4E27-BAE0-429295FED4B5}"
 EndProject

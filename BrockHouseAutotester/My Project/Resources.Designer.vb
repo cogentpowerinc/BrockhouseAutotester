@@ -91,6 +91,26 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property GreenLight_Off() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("GreenLight_Off", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property GreenLight_On() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("GreenLight_On", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         '''</summary>
         Friend ReadOnly Property MPG_EXPERT() As System.Drawing.Icon

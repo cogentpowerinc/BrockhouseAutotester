@@ -37,6 +37,16 @@
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:My.Resources.Resources.GreenLight_Off">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:My.Resources.Resources.GreenLight_On">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:My.Resources.Resources.MPG_EXPERT">
 <summary>
   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).

@@ -236,6 +236,11 @@
   <ItemGroup>
     <None Include="Resources\settings_48.png" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\GreenLight_Off.png" />
+    <Content Include="Images\GreenLight_On.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

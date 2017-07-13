@@ -123,6 +123,37 @@ namespace ABCommunication
             }
         }
 
+
+        
+        private Int32 _HeartBeatInterval_ms = 100;
+        public Int32 HeartBeatInterval_ms
+        {
+            get
+            {
+                return _HeartBeatInterval_ms;
+            }
+            set
+            {
+                _HeartBeatInterval_ms = value;
+
+            }
+        }
+
+
+        private Int32 _HeartBeatMonitorTime_ms = 5000;
+        public Int32 HeartBeatMonitorTime_ms
+        {
+            get
+            {
+                return _HeartBeatMonitorTime_ms;
+            }
+            set
+            {
+                _HeartBeatMonitorTime_ms = value;
+
+            }
+        }
+
     }
 
     public class CommDefinition_Input
@@ -138,7 +169,8 @@ namespace ABCommunication
         {
             get
             {
-                _WorkOrder = PLC.CommManager.GetPLCValue_STRING(_WorkOrder_Address, out Success);
+                 if(PrimaryVariables.MasterLiveDataMode.State)
+                    _WorkOrder = PLC.CommManager.GetPLCValue_STRING(_WorkOrder_Address, out Success);
                 return _WorkOrder;
             }
             set
@@ -156,7 +188,8 @@ namespace ABCommunication
         {
             get
             {
-                _SerialNumber = PLC.CommManager.GetPLCValue_STRING(_SerialNumber_Address, out Success);
+                if (PrimaryVariables.MasterLiveDataMode.State)
+                    _SerialNumber = PLC.CommManager.GetPLCValue_STRING(_SerialNumber_Address, out Success);
                 return _SerialNumber;
             }
             set
@@ -173,7 +206,8 @@ namespace ABCommunication
         {
             get
             {
-                _Weight = PLC.CommManager.GetPLCValue_DOUBLE(_Weight_Address, out Success);
+                if (PrimaryVariables.MasterLiveDataMode.State)
+                    _Weight = PLC.CommManager.GetPLCValue_DOUBLE(_Weight_Address, out Success);
                 return _Weight;
             }
             set
@@ -192,7 +226,8 @@ namespace ABCommunication
         {
             get
             {
-                _Temp = PLC.CommManager.GetPLCValue_DOUBLE(_Temp_Address, out Success);
+                if (PrimaryVariables.MasterLiveDataMode.State)
+                    _Temp = PLC.CommManager.GetPLCValue_DOUBLE(_Temp_Address, out Success);
                 return _Temp;
             }
             set
@@ -211,7 +246,8 @@ namespace ABCommunication
         {
             get
             {
-                _InitTest = PLC.CommManager.GetPLCValue_BOOL(_InitTest_Address, out Success);
+                if (PrimaryVariables.MasterLiveDataMode.State)
+                    _InitTest = PLC.CommManager.GetPLCValue_BOOL(_InitTest_Address, out Success);
                 return _InitTest;
             }
             set
@@ -230,7 +266,8 @@ namespace ABCommunication
         {
             get
             {
-                _Reset = PLC.CommManager.GetPLCValue_BOOL(_Reset_Address, out Success);
+                if (PrimaryVariables.MasterLiveDataMode.State)
+                    _Reset = PLC.CommManager.GetPLCValue_BOOL(_Reset_Address, out Success);
                 return _Reset;
             }
             set
@@ -249,7 +286,8 @@ namespace ABCommunication
         {
             get
             {
-                _ResultResponse = PLC.CommManager.GetPLCValue_INT32(_ResultResponse_Address, out Success);
+                if (PrimaryVariables.MasterLiveDataMode.State)
+                    _ResultResponse = PLC.CommManager.GetPLCValue_INT32(_ResultResponse_Address, out Success);
                 return _ResultResponse;
             }
             set
@@ -267,7 +305,8 @@ namespace ABCommunication
         {
             get
             {
-                _AutoMode = PLC.CommManager.GetPLCValue_BOOL(_AutoMode_Address, out Success);
+                if (PrimaryVariables.MasterLiveDataMode.State)
+                    _AutoMode = PLC.CommManager.GetPLCValue_BOOL(_AutoMode_Address, out Success);
                 return _AutoMode;
             }
             set
@@ -291,18 +330,25 @@ namespace ABCommunication
         {
             get
             {
-                _Heartbeat = PLC.CommManager.GetPLCValue_BOOL(_Heartbeat_Address, out Success);
-                if (_Heartbeat != Heartbeat)
-                    HeartBeatStatusUpdate();
-               
                 return _Heartbeat;
             }
             set
             {
-                _Heartbeat = value;
-
+                if (PrimaryVariables.MasterLiveDataMode.State)
+                {
+                    bool myHeartbeat = PLC.CommManager.GetPLCValue_BOOL(_Heartbeat_Address, out Success);
+                    if (_Heartbeat != myHeartbeat)
+                    {
+                        _Heartbeat = myHeartbeat;
+                        HeartBeatStatusUpdate();
+                    }
+                }
+                else
+                    _Heartbeat = value;
+               
             }
         }
+      
         #endregion
 
     }
@@ -326,7 +372,8 @@ namespace ABCommunication
                 if (_ReadyForData != value)
                 {
                     _ReadyForData = value;
-                    Success = PLC.CommManager.SetPLCValue(_ReadyForData_Address, _ReadyForData);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_ReadyForData_Address, _ReadyForData);
                 }
 
             }
@@ -349,7 +396,32 @@ namespace ABCommunication
                 if (_ReadyToTest != value)
                 {
                     _ReadyToTest = value;
-                    Success = PLC.CommManager.SetPLCValue(_ReadyToTest_Address, _ReadyToTest);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_ReadyToTest_Address, _ReadyToTest);
+                }
+
+            }
+        }
+
+        #endregion
+
+        #region TestInProcess Region
+
+        private string _TestInProcess_Address = "{Ch_AT_1_Ch}{Adrs_PROGRAM:Tester.BrockhouseInterface.ToCogent.TestInProcess_Adrs}";
+        private bool _TestInProcess = false;
+        public bool TestInProcess
+        {
+            get
+            {
+                return _TestInProcess;
+            }
+            set
+            {
+                if (_TestInProcess != value)
+                {
+                    _TestInProcess = value;
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_TestInProcess_Address, _TestInProcess);
                 }
 
             }
@@ -372,7 +444,8 @@ namespace ABCommunication
                 if (_FetchingFromServer != value)
                 {
                     _FetchingFromServer = value;
-                    Success = PLC.CommManager.SetPLCValue(_FetchingFromServer_Address, _FetchingFromServer);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_FetchingFromServer_Address, _FetchingFromServer);
                 }
 
             }
@@ -395,7 +468,8 @@ namespace ABCommunication
                 if (_TestComplete != value)
                 {
                     _TestComplete = value;
-                    Success = PLC.CommManager.SetPLCValue(_TestComplete_Address, _TestComplete);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_TestComplete_Address, _TestComplete);
                 }
 
             }
@@ -418,7 +492,8 @@ namespace ABCommunication
                 if (_TestFailedToComplete != value)
                 {
                     _TestFailedToComplete = value;
-                    Success = PLC.CommManager.SetPLCValue(_TestFailedToComplete_Address, _TestFailedToComplete);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_TestFailedToComplete_Address, _TestFailedToComplete);
                 }
 
             }
@@ -441,7 +516,8 @@ namespace ABCommunication
                 if (_ErrorMsg != value)
                 {
                     _ErrorMsg = value;
-                    Success = PLC.CommManager.SetPLCValue(_ErrorMsg_Address, _ErrorMsg);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_ErrorMsg_Address, _ErrorMsg);
                 }
 
             }
@@ -464,7 +540,8 @@ namespace ABCommunication
                 if (_ErrorCode != value)
                 {
                     _ErrorCode = value;
-                    Success = PLC.CommManager.SetPLCValue(_ErrorCode_Address, _ErrorCode);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_ErrorCode_Address, _ErrorCode);
                 }
 
             }
@@ -487,7 +564,8 @@ namespace ABCommunication
                 if (_Faulted != value)
                 {
                     _Faulted = value;
-                    Success = PLC.CommManager.SetPLCValue(_Faulted_Address, _Faulted);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_Faulted_Address, _Faulted);
                 }
 
             }
@@ -510,7 +588,8 @@ namespace ABCommunication
                 if (_ActualCoreLoss != value)
                 {
                     _ActualCoreLoss = value;
-                    Success = PLC.CommManager.SetPLCValue(_ActualCoreLoss_Address, _ActualCoreLoss);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_ActualCoreLoss_Address, _ActualCoreLoss);
                 }
 
             }
@@ -533,7 +612,8 @@ namespace ABCommunication
                 if (_ActualAmpTurns != value)
                 {
                     _ActualAmpTurns = value;
-                    Success = PLC.CommManager.SetPLCValue(_ActualAmpTurns_Address, _ActualCoreLoss);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_ActualAmpTurns_Address, _ActualCoreLoss);
                 }
 
             }
@@ -557,7 +637,8 @@ namespace ABCommunication
                 if (_ServerResult != value)
                 {
                     _ServerResult = value;
-                    Success = PLC.CommManager.SetPLCValue(_ServerResult_Address, _ServerResult);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_ServerResult_Address, _ServerResult);
                 }
 
             }
@@ -581,7 +662,8 @@ namespace ABCommunication
                 if (_HeartbeatEcho != value)
                 {
                     _HeartbeatEcho = value;
-                    Success = PLC.CommManager.SetPLCValue(_HeartbeatEcho_Address, _HeartbeatEcho);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_HeartbeatEcho_Address, _HeartbeatEcho);
                 }
 
             }
@@ -604,7 +686,8 @@ namespace ABCommunication
                 if (_InAuto != value)
                 {
                     _InAuto = value;
-                    Success = PLC.CommManager.SetPLCValue(_InAuto_Address, _InAuto);
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_InAuto_Address, _InAuto);
                 }
 
             }
@@ -629,23 +712,20 @@ namespace ABCommunication
         
     }
 
-    static class myPLCTools
+   public static class myPLCTools
     {
         private static DispatcherTimer UpdateTmr = new DispatcherTimer();
         private static DispatcherTimer HeartBeat_Late_Tmr = new DispatcherTimer();
-        private static bool PLCHeartbeat = false;
-        private static bool PLCHeartbeat_Last = false;
-        public static void ElectroCardiogramMachine()
-        {
-            if (MyPLC.Comm.IsOnline)
-            {
-                bool PLCHeartbeat = MyPLC.FromPLC.Heartbeat;
-                
-            }
-        }
+        private static DispatcherTimer HeartBeat_Pulse_Tmr = new DispatcherTimer();
+
+        public static bool CommEnabled = false;
+
         public static bool Initialize(string _path, string _CommFile, string _InputFile, string _OutputFile)
         {
-            if (LoadConfig(_path,_CommFile,_InputFile,_OutputFile))
+            CommEnabled = true;
+
+            PrimaryVariables.MasterLiveDataMode.State = false;
+            if (!LoadConfig(_path,_CommFile,_InputFile,_OutputFile))
                 SaveConfig(_path, _CommFile, _InputFile, _OutputFile);
 
            
@@ -656,32 +736,106 @@ namespace ABCommunication
                     CommManager.Channel(MyPLC.Comm.DriverType, MyPLC.Comm.Name, MyPLC.Comm.IPAddress, MyPLC.Comm.SlotNum, MyPLC.Comm.Timeout, MyPLC.Comm.CPUType));
             else
                 return false;
-     
-            HeartBeat_Late_Tmr.Interval = TimeSpan.FromSeconds(5);
+
+            PrimaryVariables.MasterLiveDataMode.State = true;
+
+            HeartBeat_Pulse_Tmr.Interval = TimeSpan.FromMilliseconds(MyPLC.Comm.HeartBeatInterval_ms);
+            HeartBeat_Pulse_Tmr.Start();
+            HeartBeat_Pulse_Tmr.Tick += HeartBeat_Pulse_Tmr_Tick;
+
+            HeartBeat_Late_Tmr.Interval = TimeSpan.FromMilliseconds(MyPLC.Comm.HeartBeatMonitorTime_ms);
             HeartBeat_Late_Tmr.Start();
             HeartBeat_Late_Tmr.Tick += HeartBeat_Late_Tmr_Tick;
+
+
             UpdateTmr.Interval = TimeSpan.FromMilliseconds(MyPLC.Comm.UpdateInterval_ms);
             UpdateTmr.Tick += UpdateTmr_Tick;
             MyPLC.FromPLC.HeartBeat_Changed += FromPLC_HeartBeat_Changed;
 
+            PrimaryVariables.MasterLiveDataMode.Status += MasterLiveDataMode_Status;
+
+
             return true;
         }
 
-        private static void FromPLC_HeartBeat_Changed(object sender, EventArgs e)
+        public static bool CommShutDown()
         {
-            HeartBeat_Late_Tmr.Start();
+            try
+            {
+                CommEnabled = false;
+                    MyPLC.Comm.IsOnline = false;
+                    PrimaryVariables.MasterLiveDataMode.State = false;
+                    HeartBeat_Late_Tmr.Stop();
+                    HeartBeat_Pulse_Tmr.Stop();
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static DispatcherTimer CommRetry_Tmr = new DispatcherTimer();
+        private static void MasterLiveDataMode_Status(object sender, EventArgs e)
+        {
+            if (!PrimaryVariables.MasterLiveDataMode.State && CommEnabled)
+            {
+                CommRetry_Tmr.Interval = TimeSpan.FromSeconds(15);
+                CommRetry_Tmr.Start();
+                CommRetry_Tmr.Tick += CommRetry_Tmr_Tick;
+            }
+        }
+
+        private static void CommRetry_Tmr_Tick(object sender, EventArgs e)
+        {
+            if (CommEnabled)
+            {
+                bool CommCheck = Core.PingTest_byIPAddress(MyPLC.Comm.IPAddress);
+                if (CommCheck)
+                {
+                    MyPLC.Comm.IsOnline = true;
+                    PrimaryVariables.MasterLiveDataMode.State = true;
+                    HeartBeat_Late_Tmr.Start();
+                    HeartBeat_Pulse_Tmr.Start();
+                    bool HeartCheck = MyPLC.FromPLC.Heartbeat;
+                }
+            }
         }
 
         private static void UpdateTmr_Tick(object sender, EventArgs e)
         {
-            MyPLC.ToPLC.HeartbeatEcho = !MyPLC.ToPLC.HeartbeatEcho;
+            throw new NotImplementedException();
         }
+
+        private static void HeartBeat_Pulse_Tmr_Tick(object sender, EventArgs e)
+        {
+            if (CommEnabled)
+            {
+                MyPLC.ToPLC.HeartbeatEcho = !MyPLC.ToPLC.HeartbeatEcho;
+                MyPLC.FromPLC.Heartbeat=true;
+            }
+        }
+
+        private static void FromPLC_HeartBeat_Changed(object sender, EventArgs e)
+        {
+            if (CommEnabled)
+            {
+                HeartBeat_Late_Tmr.Stop(); HeartBeat_Late_Tmr.Start();
+            }
+        }
+
+
 
         private static void HeartBeat_Late_Tmr_Tick(object sender, EventArgs e)
         {
-            MyPLC.Comm.IsOnline = false;
-            HeartBeat_Late_Tmr.Stop();
-           
+            if (CommEnabled)
+            {
+                MyPLC.Comm.IsOnline = false;
+                PrimaryVariables.MasterLiveDataMode.State = false;
+                HeartBeat_Late_Tmr.Stop();
+                HeartBeat_Pulse_Tmr.Stop();
+
+            }
         }
 
         public static bool SaveConfig(string _path, string _CommFile, string _InputFile, string _OutputFile)
@@ -690,11 +844,12 @@ namespace ABCommunication
             {
                 if (!Directory.Exists(_path))
                     Directory.CreateDirectory(_path);
-
+                PrimaryVariables.MasterLiveDataMode.State = false;
                 
                 XMLTools.ToXML<CommDefinition_Comms>(MyPLC.Comm, _path + _CommFile);
                 XMLTools.ToXML<CommDefinition_Input>(MyPLC.FromPLC, _path + _InputFile);
                 XMLTools.ToXML<CommDefinition_Output>(MyPLC.ToPLC, _path + _OutputFile);
+                PrimaryVariables.MasterLiveDataMode.State = false;
                 return true;
             }
             catch { return  false; }
@@ -722,4 +877,6 @@ namespace ABCommunication
             }
         }
     }
+
+
 }
