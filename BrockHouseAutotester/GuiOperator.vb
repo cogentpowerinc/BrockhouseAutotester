@@ -167,7 +167,13 @@ Public Class GuiOperator
                                End If
                                lblCurrentResult_update()
 
-                               btnStart.Enabled = True
+
+                               If (ControlModeIsAutomatic) Then   ' Added by VERGEER
+                                   MyPLC.ToPLC.CoreGrade = _core.CurrentResult.Grade ' Added by VERGEER
+                               Else ' Added by VERGEER
+                                   btnStart.Enabled = True  'MOVED INTO IF STRUCTURE by VERGEER
+                               End If ' Added by VERGEER
+
 
                                If _core.CurrentResult.Grade = Result.GradeT.IOR Then
                                    lblStatus.Text = My.Resources.Controls.sStatusFluxDensityOutOfRange
@@ -434,20 +440,15 @@ Public Class GuiOperator
 
         DummyTimer.Interval = TimeSpan.FromMilliseconds(100)
         AddHandler DummyTimer.Tick, AddressOf DummyTimer_Tick
-        AddHandler MyPLC.FromPLC.HeartBeat_Changed, AddressOf HeartbeatChanged
-
-
-
-
-
+        AddHandler myPLCTools.HeartBeat.Status, AddressOf HeartbeatChanged
 
     End Sub
 
 
     Private Sub HeartbeatChanged(sender As Object, e As EventArgs)
-        rb_HeartBeat.Checked = MyPLC.FromPLC.Heartbeat
-    End Sub
+        rb_HeartBeat.Checked = myPLCTools.HeartBeat.State
 
+    End Sub
 
     Private Shared DummyTimer As New DispatcherTimer()  'To be deleted
     Private Sub DummyTimer_Tick(sender As Object, e As EventArgs)    'To be deleted 
@@ -469,11 +470,7 @@ Public Class GuiOperator
         Dim Success As Boolean = False
 
         If (MyPLC.Comm.IsOnline) Then
-
-
             MyPLC.ToPLC.InAuto = MyPLC.FromPLC.AutoMode
-
-
             If MyPLC.ToPLC.InAuto And MyPLC.FromPLC.Reset = False Then
                 MyPLC.ToPLC.ReadyForData = True
 
@@ -573,7 +570,6 @@ Public Class GuiOperator
     End Sub
 
     Private Sub ChangeControlMode()
-
         If ControlModeIsAutomatic Then
             Btn_AutoManualMode.BackColor = Color.LightGreen
             Btn_AutoManualMode.Text = "AUTOMODE MODE"

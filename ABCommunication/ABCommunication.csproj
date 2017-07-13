@@ -63,7 +63,6 @@
     <Compile Include="ABComms\SLCMLCDriver.cs" />
     <Compile Include="CommDefinition.cs" />
     <Compile Include="Common\XMLTools.cs" />
-    <Compile Include="CommSpec.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Core.cs" />
     <Compile Include="Common\Debug.cs" />

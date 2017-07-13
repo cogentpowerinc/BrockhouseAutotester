@@ -50,7 +50,7 @@ Public Class Core
         RaiseEvent CurrentResultChanged()
     End Sub
 #End Region
-    
+
 #Region "Level2 Workorder"
     Public Event CurrentWorkOrderChanged()
 

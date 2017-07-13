@@ -10,10 +10,10 @@ namespace Common
     public class PrimaryVariables
     {
 
-       
+
         public const string ChannelHeader = "{Ch_";
         public const string ChannelFooter = "_Ch}";
-       
+
         public const string AddressHeader = "{Adrs_";
         public const string AddressFooter = "_Adrs}";
 
@@ -30,20 +30,20 @@ namespace Common
 
 
 
-        public static BoolWithEventStatus MasterLiveDataMode = new BoolWithEventStatus();
-       
+        public static BoolWithEventStatus_NegativeOnly MasterLiveDataMode = new BoolWithEventStatus_NegativeOnly();
+
     }
 
-    public class BoolWithEventStatus 
+    public class BoolWithEventStatus_NegativeOnly
     {
 
-        public  event EventHandler Status;
-        protected  virtual void StatusChange()
+        public event EventHandler Status;
+        protected virtual void StatusChange()
         {
             if (Status != null) Status(this, EventArgs.Empty);
         }
-        private  bool _State = true;
-        public  bool State
+        private bool _State = true;
+        public bool State
         {
             get
             {
@@ -57,19 +57,40 @@ namespace Common
             }
         }
     }
+    public class BoolWithEventStatus
+    {
 
+        public event EventHandler Status;
+        protected virtual void StatusChange()
+        {
+            if (Status != null) Status(this, EventArgs.Empty);
+        }
+        private bool _State = true;
+        public bool State
+        {
+            get
+            {
+                return _State;
+            }
+            set
+            {
+                _State = value;
+                    StatusChange();
+            }
+        }
+    }
 }
-    /// <summary>
-    /// These are the LEGAL classes that AB will accept as a DataType.
-    /// This should be used in writing and data.
-    /// This format will be returned with the Variable Names.
-    /// </summary>
-    public enum ABTagClass
+/// <summary>
+/// These are the LEGAL classes that AB will accept as a DataType.
+/// This should be used in writing and data.
+/// This format will be returned with the Variable Names.
+/// </summary>
+public enum ABTagClass
 {
 
     BOOL = 0,
     SINT = 1,
-   INT = 2,
+    INT = 2,
     DINT = 3,
     REAL = 4,
     STRING = 5,

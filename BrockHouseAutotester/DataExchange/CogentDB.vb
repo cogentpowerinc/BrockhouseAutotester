@@ -14,8 +14,8 @@ Namespace DataExchange
 #Region "DB connection string and basic procedures"
             Private Const ConnectionStringBMT = "Data Source=testserver;Initial Catalog=Microsoft.SqlServer.Smo;User ID=sa;Password=root;"
             'Private Const ConnectionStringCogent = "Data Source=121COGENTS9K;Initial Catalog=CPI;User ID=SYSADM;Password=COPOW05"
-            Private Shared ConnectionStringCogent As String = "Data Source=" + Core.Instance.CurrentSettings.DataSource + _
-                                                       ";Initial Catalog=CPI;User ID=" + Core.Instance.CurrentSettings.UserID + _
+            Private Shared ConnectionStringCogent As String = "Data Source=" + Core.Instance.CurrentSettings.DataSource +
+                                                       ";Initial Catalog=CPI;User ID=" + Core.Instance.CurrentSettings.UserID +
                                                        ";Password=" + Core.Instance.CurrentSettings.Password + ";"
 
             Private Shared Function ExecuteDataTable(sql As String) As DataTable
@@ -87,9 +87,9 @@ Namespace DataExchange
             End Function
             Private Shared Function GetTestType(workOrder As String, ByRef type As String) As Boolean
                 Dim cwoObj As CogentWorkOrderComplex = Nothing
-                Dim sqlGET As String = "SELECT" & " WO.BASE_ID AS WorkOrder," & _
-                    " WO.UDF_LAYOUT_ID As UDF_LAYOUT_ID" & _
-                    " FROM WORK_ORDER As WO" & _
+                Dim sqlGET As String = "SELECT" & " WO.BASE_ID AS WorkOrder," &
+                    " WO.UDF_LAYOUT_ID As UDF_LAYOUT_ID" &
+                    " FROM WORK_ORDER As WO" &
                     " WHERE WO.BASE_ID ='" & workOrder & "'"
 
 
@@ -121,7 +121,7 @@ Namespace DataExchange
                 Return True
             End Function
 
-            Public Shared Function RequestResults(ByVal workOrder As WorkOrder, _
+            Public Shared Function RequestResults(ByVal workOrder As WorkOrder,
                                                   ByRef results As List(Of Result)) As Boolean
                 results = New List(Of Result)
 
@@ -153,66 +153,66 @@ Namespace DataExchange
 
 #Region "Request DgCore work order"
             Private Shared Function GetDgCoreWorkOrder(workOrder As String, ByRef daten As CogentWorkOrderComplex) As Boolean
-                Dim sqlGET As String = "SELECT" & " WO.BASE_ID AS WorkOrder," & _
-                    " WO.USER_1 As USER_1 ," & _
-                    " WO.USER_2 As USER_2 ," & _
-                    " WO.USER_3 As USER_3 ," & _
-                    " WO.USER_4 As USER_4 ," & _
-                    " WO.USER_5 As USER_5 ," & _
-                    " WO.USER_6 As USER_6 ," & _
-                    " WO.USER_7 As USER_7 ," & _
-                    " WO.USER_8 As USER_8 ," & _
-                    " WO.USER_9 As USER_9 ," & _
-                    " WO.USER_10 As USER_10 ," & _
-                    " WO.UDF_LAYOUT_ID As UDF_LAYOUT_ID ," & _
-                    " CPI_SOFT_LINK.DEMAND_BASE_ID As COa," & _
-                    " CPI_SOFT_LINK.DEMAND_SEQ_NO AS COb," & _
-                    " WO.DESIRED_QTY AS Qty," & _
-                    " CUSTOMER.ID AS CustID," & _
-                    " CUSTOMER.NAME AS CustName," & _
-                    " CUSTOMER_ORDER.CUSTOMER_PO_REF AS PO," & _
-                    " PART.DESCRIPTION AS Part_Description," & _
-                    " PART.ID AS PartID," & _
-                    " WO.PRODUCT_CODE AS ProductCode," & _
-                    " WO.DESIRED_WANT_DATE AS WantDate," & _
-                    " WO.DESIRED_QTY AS Qty2," & _
-                    " 1 AS Rng1," & _
-                    " WO.DESIRED_QTY AS Rng2," & _
-                    " WO.COMMODITY_CODE AS Grade," & _
-                    " 7650 AS MatDensity," & _
-                    " Wind.USER_4 AS StackFactor," & _
-                    " WO.USER_1 AS MatWidth," & _
-                    " Wind.USER_3 AS ID," & _
-                    " PART.WEIGHT AS Wght," & _
-                    " Wind.USER_2 AS Build," & _
-                    " WO.USER_4 AS WWidth," & _
-                    " WO.USER_5 AS WLength," & _
-                    " Test.USER_1 AS TestSetting," & _
-                    " Test.USER_2 AS TestVoltage," & _
-                    " Test.USER_3 AS FluxDensity," & _
-                    " Test.USER_6 AS MaxGreen," & _
-                    " Test.USER_7 AS MaxYellow," & _
-                    " Test.USER_8 AS MaxRed," & _
-                    " Test.USER_10 AS SampleRate," & _
-                    " Test.USER_5 AS MaxAmps," & _
-                    " Test.USER_4 AS Mult," & _
-                    " 'IN' AS Imp," & _
-                    " Wind.USER_7 AS NoGaps," & _
-                    " Wind.USER_8 AS Overlap," & _
-                    " WO.USER_3 AS GapLocation," & _
-                    " Wind.USER_5 AS FirstSheet," & _
-                    " Wind.USER_10 AS LastSheet," & _
-                    " '   .   ' AS [End]," & _
-                    " Form.USER_1 AS Blanc1," & _
-                    " Form.USER_2 AS Blanc2" & _
-                    " FROM WORK_ORDER As WO " & _
-                    " LEFT JOIN CPI_SOFT_LINK ON WO.BASE_ID = CPI_SOFT_LINK.SUPPLY_BASE_ID" & _
-                    " LEFT JOIN CUSTOMER_ORDER ON CPI_SOFT_LINK.DEMAND_BASE_ID = CUSTOMER_ORDER.ID" & _
-                    " LEFT JOIN CUSTOMER ON CUSTOMER_ORDER.CUSTOMER_ID = CUSTOMER.ID" & _
-                    " INNER JOIN PART ON WO.PART_ID = PART.ID" & _
-                    " LEFT JOIN OPERATION AS Wind ON WO.TYPE = Wind.WORKORDER_TYPE AND WO.BASE_ID = Wind.WORKORDER_BASE_ID AND Wind.SEQUENCE_NO = (SELECT MIN(SEQUENCE_NO) FROM OPERATION WHERE WORKORDER_TYPE = WO.TYPE AND WORKORDER_BASE_ID = WO.BASE_ID)" & _
-                    " LEFT JOIN OPERATION AS Test ON WO.TYPE = Test.WORKORDER_TYPE AND WO.BASE_ID = Test.WORKORDER_BASE_ID AND Test.RESOURCE_ID Like 'TEST%'" & _
-                    " LEFT JOIN OPERATION AS Form ON WO.TYPE = Form.WORKORDER_TYPE AND WO.BASE_ID = Form.WORKORDER_BASE_ID AND Form.RESOURCE_ID Like 'FORM%'" & _
+                Dim sqlGET As String = "SELECT" & " WO.BASE_ID AS WorkOrder," &
+                    " WO.USER_1 As USER_1 ," &
+                    " WO.USER_2 As USER_2 ," &
+                    " WO.USER_3 As USER_3 ," &
+                    " WO.USER_4 As USER_4 ," &
+                    " WO.USER_5 As USER_5 ," &
+                    " WO.USER_6 As USER_6 ," &
+                    " WO.USER_7 As USER_7 ," &
+                    " WO.USER_8 As USER_8 ," &
+                    " WO.USER_9 As USER_9 ," &
+                    " WO.USER_10 As USER_10 ," &
+                    " WO.UDF_LAYOUT_ID As UDF_LAYOUT_ID ," &
+                    " CPI_SOFT_LINK.DEMAND_BASE_ID As COa," &
+                    " CPI_SOFT_LINK.DEMAND_SEQ_NO AS COb," &
+                    " WO.DESIRED_QTY AS Qty," &
+                    " CUSTOMER.ID AS CustID," &
+                    " CUSTOMER.NAME AS CustName," &
+                    " CUSTOMER_ORDER.CUSTOMER_PO_REF AS PO," &
+                    " PART.DESCRIPTION AS Part_Description," &
+                    " PART.ID AS PartID," &
+                    " WO.PRODUCT_CODE AS ProductCode," &
+                    " WO.DESIRED_WANT_DATE AS WantDate," &
+                    " WO.DESIRED_QTY AS Qty2," &
+                    " 1 AS Rng1," &
+                    " WO.DESIRED_QTY AS Rng2," &
+                    " WO.COMMODITY_CODE AS Grade," &
+                    " 7650 AS MatDensity," &
+                    " Wind.USER_4 AS StackFactor," &
+                    " WO.USER_1 AS MatWidth," &
+                    " Wind.USER_3 AS ID," &
+                    " PART.WEIGHT AS Wght," &
+                    " Wind.USER_2 AS Build," &
+                    " WO.USER_4 AS WWidth," &
+                    " WO.USER_5 AS WLength," &
+                    " Test.USER_1 AS TestSetting," &
+                    " Test.USER_2 AS TestVoltage," &
+                    " Test.USER_3 AS FluxDensity," &
+                    " Test.USER_6 AS MaxGreen," &
+                    " Test.USER_7 AS MaxYellow," &
+                    " Test.USER_8 AS MaxRed," &
+                    " Test.USER_10 AS SampleRate," &
+                    " Test.USER_5 AS MaxAmps," &
+                    " Test.USER_4 AS Mult," &
+                    " 'IN' AS Imp," &
+                    " Wind.USER_7 AS NoGaps," &
+                    " Wind.USER_8 AS Overlap," &
+                    " WO.USER_3 AS GapLocation," &
+                    " Wind.USER_5 AS FirstSheet," &
+                    " Wind.USER_10 AS LastSheet," &
+                    " '   .   ' AS [End]," &
+                    " Form.USER_1 AS Blanc1," &
+                    " Form.USER_2 AS Blanc2" &
+                    " FROM WORK_ORDER As WO " &
+                    " LEFT JOIN CPI_SOFT_LINK ON WO.BASE_ID = CPI_SOFT_LINK.SUPPLY_BASE_ID" &
+                    " LEFT JOIN CUSTOMER_ORDER ON CPI_SOFT_LINK.DEMAND_BASE_ID = CUSTOMER_ORDER.ID" &
+                    " LEFT JOIN CUSTOMER ON CUSTOMER_ORDER.CUSTOMER_ID = CUSTOMER.ID" &
+                    " INNER JOIN PART ON WO.PART_ID = PART.ID" &
+                    " LEFT JOIN OPERATION AS Wind ON WO.TYPE = Wind.WORKORDER_TYPE AND WO.BASE_ID = Wind.WORKORDER_BASE_ID AND Wind.SEQUENCE_NO = (SELECT MIN(SEQUENCE_NO) FROM OPERATION WHERE WORKORDER_TYPE = WO.TYPE AND WORKORDER_BASE_ID = WO.BASE_ID)" &
+                    " LEFT JOIN OPERATION AS Test ON WO.TYPE = Test.WORKORDER_TYPE AND WO.BASE_ID = Test.WORKORDER_BASE_ID AND Test.RESOURCE_ID Like 'TEST%'" &
+                    " LEFT JOIN OPERATION AS Form ON WO.TYPE = Form.WORKORDER_TYPE AND WO.BASE_ID = Form.WORKORDER_BASE_ID AND Form.RESOURCE_ID Like 'FORM%'" &
                     " WHERE WO.BASE_ID ='" & workOrder & "'"
 
                 Dim datenListe As New List(Of CogentWorkOrderComplex)()
@@ -243,7 +243,7 @@ Namespace DataExchange
                 Return True
             End Function
 
-            Private Shared Function ConvertCogentWoToWoDgCore(ByVal cogentWorkOrder As CogentWorkOrderComplex, _
+            Private Shared Function ConvertCogentWoToWoDgCore(ByVal cogentWorkOrder As CogentWorkOrderComplex,
                                                               ByRef workOrder As WorkOrder) As Boolean
                 Try
                     Dim dgCore As WorkOrderDgCore = New WorkOrderDgCore
@@ -290,62 +290,62 @@ Namespace DataExchange
 
 #Region "Request Toroid work order"
             Private Shared Function GetToroidWorkOrder(workOrder As String, ByRef daten As CogentWorkOrderComplex) As Boolean
-                Dim sqlGET As String = "SELECT" & " WO.BASE_ID AS WorkOrder," & _
-                    " WO.USER_1 As USER_1 ," & _
-                    " WO.USER_2 As USER_2 ," & _
-                    " WO.USER_3 As USER_3 ," & _
-                    " WO.USER_4 As USER_4 ," & _
-                    " WO.USER_5 As USER_5 ," & _
-                    " WO.USER_6 As USER_6 ," & _
-                    " WO.USER_7 As USER_7 ," & _
-                    " WO.USER_8 As USER_8 ," & _
-                    " WO.USER_9 As USER_9 ," & _
-                    " WO.USER_10 As USER_10 ," & _
-                    " WO.UDF_LAYOUT_ID As UDF_LAYOUT_ID ," & _
-                    " CPI_SOFT_LINK.DEMAND_BASE_ID As COa," & _
-                    " CPI_SOFT_LINK.DEMAND_SEQ_NO AS COb," & _
-                    " WO.DESIRED_QTY AS Qty," & _
-                    " CUSTOMER.ID AS CustID," & _
-                    " CUSTOMER.NAME AS CustName," & _
-                    " CUSTOMER_ORDER.CUSTOMER_PO_REF AS PO," & _
-                    " PART.DESCRIPTION AS Part_Description," & _
-                    " PART.ID AS PartID," & _
-                    " WO.PRODUCT_CODE AS ProductCode," & _
-                    " WO.DESIRED_WANT_DATE AS WantDate," & _
-                    " WO.DESIRED_QTY AS Qty2," & _
-                    " 1 AS Rng1," & _
-                    " WO.DESIRED_QTY AS Rng2," & _
-                    " WO.COMMODITY_CODE AS Grade," & _
-                    " 7650 AS MatDensity," & _
-                    " Wind.USER_4 AS StackFactor," & _
-                    " WO.USER_1 AS MatWidth," & _
-                    " Wind.USER_3 AS ID," & _
-                    " PART.WEIGHT AS Wght," & _
-                    " Wind.USER_2 AS Build," & _
-                    " WO.USER_4 AS WWidth," & _
-                    " WO.USER_5 AS WLength," & _
-                    " Test.USER_2 AS NoTurns," & _
-                    " Test.USER_3 AS TestVoltage," & _
-                    " Test.USER_4 AS MaxAmps," & _
-                    " Test.USER_6 AS FluxDensity," & _
-                    " Test.USER_7 AS TestSetting," & _
-                    " 'IN' AS Imp," & _
-                    " Wind.USER_7 AS NoGaps," & _
-                    " Wind.USER_8 AS Overlap," & _
-                    " WO.USER_3 AS GapLocation," & _
-                    " Wind.USER_5 AS FirstSheet," & _
-                    " Wind.USER_10 AS LastSheet," & _
-                    " '   .   ' AS [End]," & _
-                    " Form.USER_1 AS Blanc1," & _
-                    " Form.USER_2 AS Blanc2" & _
-                    " FROM WORK_ORDER As WO " & _
-                    " LEFT JOIN CPI_SOFT_LINK ON WO.BASE_ID = CPI_SOFT_LINK.SUPPLY_BASE_ID" & _
-                    " LEFT JOIN CUSTOMER_ORDER ON CPI_SOFT_LINK.DEMAND_BASE_ID = CUSTOMER_ORDER.ID" & _
-                    " LEFT JOIN CUSTOMER ON CUSTOMER_ORDER.CUSTOMER_ID = CUSTOMER.ID" & _
-                    " INNER JOIN PART ON WO.PART_ID = PART.ID" & _
-                    " LEFT JOIN OPERATION AS Wind ON WO.TYPE = Wind.WORKORDER_TYPE AND WO.BASE_ID = Wind.WORKORDER_BASE_ID AND Wind.SEQUENCE_NO = (SELECT MIN(SEQUENCE_NO) FROM OPERATION WHERE WORKORDER_TYPE = WO.TYPE AND WORKORDER_BASE_ID = WO.BASE_ID)" & _
-                    " LEFT JOIN OPERATION AS Test ON WO.TYPE = Test.WORKORDER_TYPE AND WO.BASE_ID = Test.WORKORDER_BASE_ID AND Test.RESOURCE_ID Like '%TEST'" & _
-                    " LEFT JOIN OPERATION AS Form ON WO.TYPE = Form.WORKORDER_TYPE AND WO.BASE_ID = Form.WORKORDER_BASE_ID AND Form.RESOURCE_ID Like 'FORM%'" & _
+                Dim sqlGET As String = "SELECT" & " WO.BASE_ID AS WorkOrder," &
+                    " WO.USER_1 As USER_1 ," &
+                    " WO.USER_2 As USER_2 ," &
+                    " WO.USER_3 As USER_3 ," &
+                    " WO.USER_4 As USER_4 ," &
+                    " WO.USER_5 As USER_5 ," &
+                    " WO.USER_6 As USER_6 ," &
+                    " WO.USER_7 As USER_7 ," &
+                    " WO.USER_8 As USER_8 ," &
+                    " WO.USER_9 As USER_9 ," &
+                    " WO.USER_10 As USER_10 ," &
+                    " WO.UDF_LAYOUT_ID As UDF_LAYOUT_ID ," &
+                    " CPI_SOFT_LINK.DEMAND_BASE_ID As COa," &
+                    " CPI_SOFT_LINK.DEMAND_SEQ_NO AS COb," &
+                    " WO.DESIRED_QTY AS Qty," &
+                    " CUSTOMER.ID AS CustID," &
+                    " CUSTOMER.NAME AS CustName," &
+                    " CUSTOMER_ORDER.CUSTOMER_PO_REF AS PO," &
+                    " PART.DESCRIPTION AS Part_Description," &
+                    " PART.ID AS PartID," &
+                    " WO.PRODUCT_CODE AS ProductCode," &
+                    " WO.DESIRED_WANT_DATE AS WantDate," &
+                    " WO.DESIRED_QTY AS Qty2," &
+                    " 1 AS Rng1," &
+                    " WO.DESIRED_QTY AS Rng2," &
+                    " WO.COMMODITY_CODE AS Grade," &
+                    " 7650 AS MatDensity," &
+                    " Wind.USER_4 AS StackFactor," &
+                    " WO.USER_1 AS MatWidth," &
+                    " Wind.USER_3 AS ID," &
+                    " PART.WEIGHT AS Wght," &
+                    " Wind.USER_2 AS Build," &
+                    " WO.USER_4 AS WWidth," &
+                    " WO.USER_5 AS WLength," &
+                    " Test.USER_2 AS NoTurns," &
+                    " Test.USER_3 AS TestVoltage," &
+                    " Test.USER_4 AS MaxAmps," &
+                    " Test.USER_6 AS FluxDensity," &
+                    " Test.USER_7 AS TestSetting," &
+                    " 'IN' AS Imp," &
+                    " Wind.USER_7 AS NoGaps," &
+                    " Wind.USER_8 AS Overlap," &
+                    " WO.USER_3 AS GapLocation," &
+                    " Wind.USER_5 AS FirstSheet," &
+                    " Wind.USER_10 AS LastSheet," &
+                    " '   .   ' AS [End]," &
+                    " Form.USER_1 AS Blanc1," &
+                    " Form.USER_2 AS Blanc2" &
+                    " FROM WORK_ORDER As WO " &
+                    " LEFT JOIN CPI_SOFT_LINK ON WO.BASE_ID = CPI_SOFT_LINK.SUPPLY_BASE_ID" &
+                    " LEFT JOIN CUSTOMER_ORDER ON CPI_SOFT_LINK.DEMAND_BASE_ID = CUSTOMER_ORDER.ID" &
+                    " LEFT JOIN CUSTOMER ON CUSTOMER_ORDER.CUSTOMER_ID = CUSTOMER.ID" &
+                    " INNER JOIN PART ON WO.PART_ID = PART.ID" &
+                    " LEFT JOIN OPERATION AS Wind ON WO.TYPE = Wind.WORKORDER_TYPE AND WO.BASE_ID = Wind.WORKORDER_BASE_ID AND Wind.SEQUENCE_NO = (SELECT MIN(SEQUENCE_NO) FROM OPERATION WHERE WORKORDER_TYPE = WO.TYPE AND WORKORDER_BASE_ID = WO.BASE_ID)" &
+                    " LEFT JOIN OPERATION AS Test ON WO.TYPE = Test.WORKORDER_TYPE AND WO.BASE_ID = Test.WORKORDER_BASE_ID AND Test.RESOURCE_ID Like '%TEST'" &
+                    " LEFT JOIN OPERATION AS Form ON WO.TYPE = Form.WORKORDER_TYPE AND WO.BASE_ID = Form.WORKORDER_BASE_ID AND Form.RESOURCE_ID Like 'FORM%'" &
                     " WHERE WO.BASE_ID ='" & workOrder & "'"
 
                 Dim datenListe As New List(Of CogentWorkOrderComplex)()
@@ -376,7 +376,7 @@ Namespace DataExchange
                 Return True
             End Function
 
-            Private Shared Function ConvertCogentWoToWoToroid(ByVal cogentWorkOrder As CogentWorkOrderComplex, _
+            Private Shared Function ConvertCogentWoToWoToroid(ByVal cogentWorkOrder As CogentWorkOrderComplex,
                                                               ByRef workOrder As WorkOrder) As Boolean
                 Try
                     Dim toroid As New WorkOrderToroid
@@ -423,7 +423,7 @@ Namespace DataExchange
 #End Region
 
 #Region "Request DgCore results"
-            Private Shared Function RequestDgCoreResults(ByVal workOrder As WorkOrder, _
+            Private Shared Function RequestDgCoreResults(ByVal workOrder As WorkOrder,
                                               ByRef results As List(Of Result)) As Boolean
                 Dim newResults As New List(Of CogentDgCoreResult)
                 Dim newHeader As New CogentDgCoreHeader
@@ -457,8 +457,8 @@ Namespace DataExchange
                             Dim dgCoreWo As WorkOrderDgCore = TryCast(workOrder, WorkOrderDgCore)
                             If dgCoreWo Is Nothing Then Return False
 
-                            .Grade = Math.GetDgCoreGrade(dgCoreWo.LossLimit_MaxGreen, _
-                                                   dgCoreWo.LossLimit_MaxYellow, _
+                            .Grade = Math.GetDgCoreGrade(dgCoreWo.LossLimit_MaxGreen,
+                                                   dgCoreWo.LossLimit_MaxYellow,
                                                    dgCoreWo.LossLimit_MaxRed, .Watts)
                             .PercentageGreenLossLevel = CDbl(FormatNumber(Math.PercentageGreenLossLevel(element.WATTS, dgCoreWo.LossLimit_MaxGreen), 2))
                             '.PercentageActualVT = Math.PercentageVoltsTurn(element.coilsystem.n2, element.uMax)
@@ -504,7 +504,7 @@ Namespace DataExchange
                 Return True
             End Function
             Private Shared Function RequestDgCoreResultSQL(ByVal WORK_ORDER_ID As String, ByVal LINE As Decimal, ByVal SUB_LINE As String, ByRef result As CogentDgCoreResult) As Boolean
-                Dim sqlGET As String = "SELECT * FROM CPI_WO_TEST_LINE " + _
+                Dim sqlGET As String = "SELECT * FROM CPI_WO_TEST_LINE " +
                                        "WHERE WORK_ORDER_ID='" + WORK_ORDER_ID + "' AND LINE=" + LINE.ToString + " AND SUB_LINE='" + SUB_LINE + "'"
                 Try
                     Dim tab As DataTable = ExecuteDataTable(sqlGET)
@@ -555,7 +555,7 @@ Namespace DataExchange
 #End Region
 
 #Region "Request Toroid results"
-            Private Shared Function RequestToroidResults(ByVal workOrder As WorkOrder, _
+            Private Shared Function RequestToroidResults(ByVal workOrder As WorkOrder,
                                                           ByRef results As List(Of Result)) As Boolean
                 Dim newResults As New List(Of CogentToroidResult)
                 Dim newHeader As New CogentToroidHeader
@@ -625,11 +625,11 @@ Namespace DataExchange
 
                 Return True
             End Function
-            Private Shared Function RequestToroidResultSQL(ByVal WORK_ORDER_ID As String, _
-                                                            ByVal SerialNo As Integer, _
-                                                            ByVal RetestNo As Integer, _
+            Private Shared Function RequestToroidResultSQL(ByVal WORK_ORDER_ID As String,
+                                                            ByVal SerialNo As Integer,
+                                                            ByVal RetestNo As Integer,
                                                             ByVal Duplicate As String, ByRef result As CogentToroidResult) As [Boolean]
-                Dim sqlGET As String = "SELECT * from CPI_TOROID_TEST_LINE " + _
+                Dim sqlGET As String = "SELECT * from CPI_TOROID_TEST_LINE " +
                                        "WHERE WORK_ORDER_ID='" + WORK_ORDER_ID + "' AND SerialNo='" + SerialNo.ToString + "' AND RetestNo ='" + RetestNo.ToString + "' AND Duplicate = '" + Duplicate + "'"
                 Try
                     Dim tab As DataTable = ExecuteDataTable(sqlGET)
@@ -704,8 +704,8 @@ Namespace DataExchange
                     End If
                 End If
             End Function
-            Private Shared Function ConvertResultToCogentDgCoreResult(ByVal workOrderNo As String, _
-                                                                        ByVal result As Result, _
+            Private Shared Function ConvertResultToCogentDgCoreResult(ByVal workOrderNo As String,
+                                                                        ByVal result As Result,
                                                                         ByRef cogentResult As CogentDgCoreResult) As Boolean
                 Try
                     cogentResult = New CogentDgCoreResult
@@ -751,15 +751,15 @@ Namespace DataExchange
             End Function
             Private Shared Function InsertDgCoreHeaderSQL(data As CogentDgCoreHeader) As Boolean
                 Try
-                    Dim sqlIN As String = "INSERT INTO CPI_WO_TEST ([WORK_ORDER_ID] ,[CATALOGUE_NO] ,[CUSTOMER_ID] ,[CUSTOMER_PO] ,[CUSTOMER_PART_NO] ,[DATE_TEST] ,[DATETIME_TEST] ,[GRADE] ,[FLUX_DENSITY]) VALUES('" & _
-                    data.WORK_ORDER_ID & "', '" & _
-                    data.CATALOGUE_NO & "', '" & _
-                    data.CUSTOMER_ID & "' ,'" & _
-                    data.CUSTOMER_PO & "', '" & _
-                    data.CUSTOMER_PART_NO & "', '" & _
-                    data.DATE_TEST.ToString("MM-dd-yy").Replace("-", "/") & "', '" & _
-                    data.DATETIME_TEST.ToString("MM-dd-yy hh:mm:ss").Replace("-", "/") & "', '" & _
-                    data.GRADE & "', " & _
+                    Dim sqlIN As String = "INSERT INTO CPI_WO_TEST ([WORK_ORDER_ID] ,[CATALOGUE_NO] ,[CUSTOMER_ID] ,[CUSTOMER_PO] ,[CUSTOMER_PART_NO] ,[DATE_TEST] ,[DATETIME_TEST] ,[GRADE] ,[FLUX_DENSITY]) VALUES('" &
+                    data.WORK_ORDER_ID & "', '" &
+                    data.CATALOGUE_NO & "', '" &
+                    data.CUSTOMER_ID & "' ,'" &
+                    data.CUSTOMER_PO & "', '" &
+                    data.CUSTOMER_PART_NO & "', '" &
+                    data.DATE_TEST.ToString("MM-dd-yy").Replace("-", "/") & "', '" &
+                    data.DATETIME_TEST.ToString("MM-dd-yy hh:mm:ss").Replace("-", "/") & "', '" &
+                    data.GRADE & "', " &
                     data.FLUX_DENSITY.ToString(Globalization.CultureInfo.InvariantCulture) & ")"
 
                     Return ExecuteNoN(sqlIN)
@@ -770,15 +770,15 @@ Namespace DataExchange
             End Function
             Private Shared Function UpdateDgCoreResultSQL(data As CogentDgCoreResult) As Boolean
                 Try
-                    Dim sqlIn As String = _
-                        "UPDATE CPI_WO_TEST_LINE " + _
-                        "SET [WEIGHT]=" + data.WEIGHT.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[WATTS]=" + data.WATTS.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[ATrms]=" + data.ATrms.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[RESULT]='" + data.RESULT + "', " + _
-                        "[USER_ID]='" + data.USER_ID + "', " + _
-                        "[DATE_TESTED]='" + data.DATE_TESTED.ToString("MM-dd-yy").Replace("-", "/") + "'," + _
-                        "[MpgDevice]='" + data.MpgDevice + "'" + _
+                    Dim sqlIn As String =
+                        "UPDATE CPI_WO_TEST_LINE " +
+                        "SET [WEIGHT]=" + data.WEIGHT.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[WATTS]=" + data.WATTS.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[ATrms]=" + data.ATrms.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[RESULT]='" + data.RESULT + "', " +
+                        "[USER_ID]='" + data.USER_ID + "', " +
+                        "[DATE_TESTED]='" + data.DATE_TESTED.ToString("MM-dd-yy").Replace("-", "/") + "'," +
+                        "[MpgDevice]='" + data.MpgDevice + "'" +
                         "WHERE [WORK_ORDER_ID]='" + data.WORK_ORDER_ID + "' AND [LINE]=" + data.LINE.ToString + " AND [SUB_LINE]='" + data.SUB_LINE + "'"
 
                     Return ExecuteNoN(sqlIn)
@@ -789,16 +789,16 @@ Namespace DataExchange
             End Function
             Private Shared Function InsertDgCoreResultSQL(data As CogentDgCoreResult) As [Boolean]
                 Try
-                    Dim sqlIN As String = "INSERT INTO CPI_WO_TEST_LINE ([WORK_ORDER_ID] ,[LINE] ,[SUB_LINE] ,[WEIGHT] ,[WATTS] ,[ATrms] ,[RESULT] ,[USER_ID] ,[DATE_TESTED], [MpgDevice]) VALUES('" & _
-                    data.WORK_ORDER_ID & "', " & _
-                    data.LINE.ToString & ", '" & _
-                    data.SUB_LINE & "' ," & _
-                    data.WEIGHT.ToString(Globalization.CultureInfo.InvariantCulture) & ", " & _
-                    data.WATTS.ToString(Globalization.CultureInfo.InvariantCulture) & ", " & _
-                    data.ATrms.ToString(Globalization.CultureInfo.InvariantCulture) & ", '" & _
-                    data.RESULT & "', '" & _
-                    data.USER_ID & "', '" & _
-                    data.DATE_TESTED.ToString("MM-dd-yy").Replace("-", "/") & "', '" & _
+                    Dim sqlIN As String = "INSERT INTO CPI_WO_TEST_LINE ([WORK_ORDER_ID] ,[LINE] ,[SUB_LINE] ,[WEIGHT] ,[WATTS] ,[ATrms] ,[RESULT] ,[USER_ID] ,[DATE_TESTED], [MpgDevice]) VALUES('" &
+                    data.WORK_ORDER_ID & "', " &
+                    data.LINE.ToString & ", '" &
+                    data.SUB_LINE & "' ," &
+                    data.WEIGHT.ToString(Globalization.CultureInfo.InvariantCulture) & ", " &
+                    data.WATTS.ToString(Globalization.CultureInfo.InvariantCulture) & ", " &
+                    data.ATrms.ToString(Globalization.CultureInfo.InvariantCulture) & ", '" &
+                    data.RESULT & "', '" &
+                    data.USER_ID & "', '" &
+                    data.DATE_TESTED.ToString("MM-dd-yy").Replace("-", "/") & "', '" &
                     data.MpgDevice & "')"
 
                     Return ExecuteNoN(sqlIN)
@@ -828,8 +828,8 @@ Namespace DataExchange
                     End If
                 End If
             End Function
-            Private Shared Function ConvertResultToCogentToroidResult(ByVal workOrderNo As String, _
-                                                                      ByVal result As Result, _
+            Private Shared Function ConvertResultToCogentToroidResult(ByVal workOrderNo As String,
+                                                                      ByVal result As Result,
                                                                       ByRef cogentResult As CogentToroidResult) As Boolean
                 Try
                     cogentResult = New CogentToroidResult
@@ -880,12 +880,12 @@ Namespace DataExchange
             End Function
             Private Shared Function InsertToroidHeaderSQL(data As CogentToroidHeader) As Boolean
                 Try
-                    Dim sqlIN As String = "INSERT INTO CPI_TOROID_TEST ([WORK_ORDER_ID] ,[CATALOGUE_NO] ,[CUSTOMER_ID] ,[CUSTOMER_PART_NO] ,[DATE_TEST] ,[GRADE]) VALUES('" & _
-                    data.WORK_ORDER_ID & "', '" & _
-                    data.CATALOGUE_NO & "', '" & _
-                    data.CUSTOMER_ID & "' ,'" & _
-                    data.CUSTOMER_PART_NO & "', '" & _
-                    data.DATE_TEST.ToString("MM-dd-yy").Replace("-", "/") & "', '" & _
+                    Dim sqlIN As String = "INSERT INTO CPI_TOROID_TEST ([WORK_ORDER_ID] ,[CATALOGUE_NO] ,[CUSTOMER_ID] ,[CUSTOMER_PART_NO] ,[DATE_TEST] ,[GRADE]) VALUES('" &
+                    data.WORK_ORDER_ID & "', '" &
+                    data.CATALOGUE_NO & "', '" &
+                    data.CUSTOMER_ID & "' ,'" &
+                    data.CUSTOMER_PART_NO & "', '" &
+                    data.DATE_TEST.ToString("MM-dd-yy").Replace("-", "/") & "', '" &
                     data.GRADE & "')"
 
                     Return ExecuteNoN(sqlIN)
@@ -896,26 +896,26 @@ Namespace DataExchange
             End Function
             Private Shared Function UpdateToroidResultSQL(data As CogentToroidResult) As Boolean
                 Try
-                    Dim sqlIn As String = _
-                        "UPDATE CPI_TOROID_TEST_LINE " + _
-                        "SET [Operator]='" + data.Operator + "', " + _
-                        "[BHV]='" + data.BHV + "', " + _
-                        "[Setval]=" + data.Setval.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[Bpk]=" + data.Bpk.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[VoltsTurn]=" + data.VoltsTurn.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[Watts]=" + data.Watts.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[VAs]=" + data.VAs.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[ATrms]=" + data.ATrms.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[PhaseAngle]=" + data.PhaseAngle.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[Quality]='" + data.Quality + "', " + _
-                        "[USER_ID]='" + data.Operator + "', " + _
-                        "[DATE_TESTED]='" + data.DATE_TESTED.ToString("MM-dd-yy").Replace("-", "/") + "' ," + _
-                        "[Weight]=" + data.Weight.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[NumberOfTurns]=" + data.NumberOfTurns.ToString(Globalization.CultureInfo.InvariantCulture) + ", " + _
-                        "[MpgDevice]='" + data.MpgDevice + "'" + _
-                        "WHERE [WORK_ORDER_ID]='" + data.WORK_ORDER_ID + _
-                        "' AND [SerialNo]=" + data.SerialNo.ToString + _
-                        " AND [RetestNo]=" + data.RetestNo.ToString + _
+                    Dim sqlIn As String =
+                        "UPDATE CPI_TOROID_TEST_LINE " +
+                        "SET [Operator]='" + data.Operator + "', " +
+                        "[BHV]='" + data.BHV + "', " +
+                        "[Setval]=" + data.Setval.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[Bpk]=" + data.Bpk.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[VoltsTurn]=" + data.VoltsTurn.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[Watts]=" + data.Watts.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[VAs]=" + data.VAs.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[ATrms]=" + data.ATrms.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[PhaseAngle]=" + data.PhaseAngle.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[Quality]='" + data.Quality + "', " +
+                        "[USER_ID]='" + data.Operator + "', " +
+                        "[DATE_TESTED]='" + data.DATE_TESTED.ToString("MM-dd-yy").Replace("-", "/") + "' ," +
+                        "[Weight]=" + data.Weight.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[NumberOfTurns]=" + data.NumberOfTurns.ToString(Globalization.CultureInfo.InvariantCulture) + ", " +
+                        "[MpgDevice]='" + data.MpgDevice + "'" +
+                        "WHERE [WORK_ORDER_ID]='" + data.WORK_ORDER_ID +
+                        "' AND [SerialNo]=" + data.SerialNo.ToString +
+                        " AND [RetestNo]=" + data.RetestNo.ToString +
                         " AND [Duplicate]='" + data.Duplicate + "'"
 
                     Return ExecuteNoN(sqlIn)
@@ -926,25 +926,25 @@ Namespace DataExchange
             End Function
             Private Shared Function InsertToroidResultSQL(data As CogentToroidResult) As [Boolean]
                 Try
-                    Dim sqlIN As String = "INSERT INTO CPI_TOROID_TEST_LINE ([WORK_ORDER_ID] ,[SerialNo] ,[RetestNo] ,[Duplicate] ,[Operator] ,[BHV] ,[Setval] ,[Bpk] ,[VoltsTurn] ,[Watts] ,[VAs] ,[ATrms] ,[PhaseAngle] ,[Quality] ,[USER_ID] ,[DATE_TESTED] ,[Weight] ,[NumberOfTurns], [MpgDevice]) VALUES('" & _
-                    data.WORK_ORDER_ID & "', " & _
-                    data.SerialNo.ToString & ", " & _
-                    data.RetestNo.ToString & ", '" & _
-                    data.Duplicate & "', '" & _
-                    data.Operator & "', '" & _
-                    data.BHV & "', " & _
-                    data.Setval.ToString(Globalization.CultureInfo.InvariantCulture) & ", " & _
-                    data.Bpk.ToString(Globalization.CultureInfo.InvariantCulture) & ", " & _
-                    data.VoltsTurn.ToString(Globalization.CultureInfo.InvariantCulture) & ", " & _
-                    data.Watts.ToString(Globalization.CultureInfo.InvariantCulture) & ", " & _
-                    data.VAs.ToString(Globalization.CultureInfo.InvariantCulture) & ", " & _
-                    data.ATrms.ToString(Globalization.CultureInfo.InvariantCulture) & ", " & _
-                    data.PhaseAngle.ToString(Globalization.CultureInfo.InvariantCulture) & ", '" & _
-                    data.Quality & "', '" & _
-                    data.Operator & "', '" & _
-                    data.DATE_TESTED.ToString("MM-dd-yy").Replace("-", "/") & "', " & _
-                    data.Weight.ToString(Globalization.CultureInfo.InvariantCulture) & ", " & _
-                    data.NumberOfTurns.ToString(Globalization.CultureInfo.InvariantCulture) & ", '" & _
+                    Dim sqlIN As String = "INSERT INTO CPI_TOROID_TEST_LINE ([WORK_ORDER_ID] ,[SerialNo] ,[RetestNo] ,[Duplicate] ,[Operator] ,[BHV] ,[Setval] ,[Bpk] ,[VoltsTurn] ,[Watts] ,[VAs] ,[ATrms] ,[PhaseAngle] ,[Quality] ,[USER_ID] ,[DATE_TESTED] ,[Weight] ,[NumberOfTurns], [MpgDevice]) VALUES('" &
+                    data.WORK_ORDER_ID & "', " &
+                    data.SerialNo.ToString & ", " &
+                    data.RetestNo.ToString & ", '" &
+                    data.Duplicate & "', '" &
+                    data.Operator & "', '" &
+                    data.BHV & "', " &
+                    data.Setval.ToString(Globalization.CultureInfo.InvariantCulture) & ", " &
+                    data.Bpk.ToString(Globalization.CultureInfo.InvariantCulture) & ", " &
+                    data.VoltsTurn.ToString(Globalization.CultureInfo.InvariantCulture) & ", " &
+                    data.Watts.ToString(Globalization.CultureInfo.InvariantCulture) & ", " &
+                    data.VAs.ToString(Globalization.CultureInfo.InvariantCulture) & ", " &
+                    data.ATrms.ToString(Globalization.CultureInfo.InvariantCulture) & ", " &
+                    data.PhaseAngle.ToString(Globalization.CultureInfo.InvariantCulture) & ", '" &
+                    data.Quality & "', '" &
+                    data.Operator & "', '" &
+                    data.DATE_TESTED.ToString("MM-dd-yy").Replace("-", "/") & "', " &
+                    data.Weight.ToString(Globalization.CultureInfo.InvariantCulture) & ", " &
+                    data.NumberOfTurns.ToString(Globalization.CultureInfo.InvariantCulture) & ", '" &
                     data.MpgDevice & "')"
 
 
