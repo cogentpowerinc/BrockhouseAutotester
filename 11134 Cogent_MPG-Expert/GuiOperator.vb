@@ -1,5 +1,4 @@
-﻿
-Imports DataElements
+﻿Imports DataElements
 Imports PLC   'Added by VERGEER
 Imports System.Windows.Threading 'Added by VERGEER
 Imports ABCommunication 'Added by VERGEER
@@ -38,21 +37,18 @@ Public Class GuiOperator
 
         'AddHandler dgvResults.SelectionChanged, AddressOf dgvResults_SelectionChanged
 
-
-
         InitComms()   'Added by VERGEER
         ControlModeIsAutomatic = True   'Added by VERGEER
         ChangeControlMode()     'Added by VERGEER
 
 
     End Sub
-    Private Sub GuiOperator_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub GuiOperator_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         CommManager.ShutDownABDriver() 'Added by VERGEER
         _core.CloseMPGexpert()
-
     End Sub
 
-    Private Sub tbWorkOrder_KeyDown(sender As System.Object, e As KeyEventArgs) Handles tbWorkOrder.KeyDown
+    Private Sub tbWorkOrder_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles tbWorkOrder.KeyDown
         If Me.AcceptButton Is Nothing AndAlso e.KeyCode = Keys.Enter Then RefreshWorkOrder()
     End Sub
     Private Sub tbWorkOrder_TextChanged(sender As Object, e As EventArgs) Handles tbWorkOrder.TextChanged
@@ -60,7 +56,7 @@ Public Class GuiOperator
         Me.AcceptButton = Nothing
     End Sub
 
-    Private Sub tbSerialNumber_KeyDown(sender As System.Object, e As KeyEventArgs) Handles tbSerialNumber.KeyDown
+    Private Sub tbSerialNumber_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles tbSerialNumber.KeyDown
         If e.KeyCode <> Keys.Enter Then Exit Sub
 
         dgvResults.ClearSelection()
@@ -84,7 +80,7 @@ Public Class GuiOperator
         tbWeight.Clear()
     End Sub
 
-    Private Sub tbWeight_KeyDown(sender As System.Object, e As KeyEventArgs) Handles tbWeight.KeyDown
+    Private Sub tbWeight_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles tbWeight.KeyDown
         If e.KeyCode <> Keys.Enter Then Exit Sub
 
         StartMeasurement()
@@ -167,13 +163,7 @@ Public Class GuiOperator
                                End If
                                lblCurrentResult_update()
 
-
-                               If (ControlModeIsAutomatic) Then   ' Added by VERGEER
-                                   MyPLC.ToPLC.CoreGrade = _core.CurrentResult.Grade ' Added by VERGEER
-                               Else ' Added by VERGEER
-                                   btnStart.Enabled = True  'MOVED INTO IF STRUCTURE by VERGEER
-                               End If ' Added by VERGEER
-
+                               btnStart.Enabled = True
 
                                If _core.CurrentResult.Grade = Result.GradeT.IOR Then
                                    lblStatus.Text = My.Resources.Controls.sStatusFluxDensityOutOfRange
@@ -196,7 +186,7 @@ Public Class GuiOperator
                            _core.UpdateOperatorHarnessInToroidWorkOrder()
 
                            pgOrderInfo.SelectedObject = _core.CurrentWorkOrder
-                           tbNumberOfCoreTested.Text = _core.CurrentWorkOrder.QuantityDone.ToString + "/" +
+                           tbNumberOfCoreTested.Text = _core.CurrentWorkOrder.QuantityDone.ToString + "/" + _
                                _core.CurrentWorkOrder.OrderQuantity.ToString
                        End Sub)
     End Sub
@@ -255,7 +245,7 @@ Public Class GuiOperator
     Private Sub btnEvaluation(ByVal state As Result.StateT)
         Select Case state
             Case Result.StateT.Remade, Result.StateT.Reprocessed, Result.StateT.Overwrite, Result.StateT.Accept
-                If _core.CurrentResult.Grade = Result.GradeT.Rejected OrElse
+                If _core.CurrentResult.Grade = Result.GradeT.Rejected OrElse _
                     _core.CurrentResult.Grade = Result.GradeT.IOR Then
                     If MsgBox(My.Resources.Controls.sAcceptResultsWithError + vbNewLine + "Grade: " + _core.CurrentResult.Grade.ToString, MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                 End If
@@ -316,38 +306,38 @@ Public Class GuiOperator
     End Sub
     Private Sub lblCurrentResult_update()
         If _core.CurrentWorkOrder Is Nothing Then Exit Sub
-        lblPercentageActualJValue.Text = _core.CurrentResult.PercentageActualJ.ToString("F3")
-        lblGradeValue.Text = _core.CurrentResult.Grade.ToString
-        lblPercentageGreenLossLevelValue.Text = _core.CurrentResult.PercentageGreenLossLevel.ToString("F3")
-        Select Case _core.CurrentResult.Grade
-            Case Result.GradeT.Passed : lblGradeValue.BackColor = _core.CurrentSettings.ColorPassed
-            Case Result.GradeT.Green : lblGradeValue.BackColor = _core.CurrentSettings.ColorGreen
-            Case Result.GradeT.Red : lblGradeValue.BackColor = _core.CurrentSettings.ColorRed
-            Case Result.GradeT.Rejected : lblGradeValue.BackColor = _core.CurrentSettings.ColorRejected
-            Case Result.GradeT.Yellow : lblGradeValue.BackColor = _core.CurrentSettings.ColorYellow
-            Case Result.GradeT.IOR
-                lblGradeValue.BackColor = _core.CurrentSettings.ColorRed
-                lblPercentageActualJValue.BackColor = _core.CurrentSettings.ColorRed
-            Case Else : lblGradeValue.BackColor = System.Drawing.SystemColors.Control
-        End Select
+            lblPercentageActualJValue.Text = _core.CurrentResult.PercentageActualJ.ToString("F3")
+            lblGradeValue.Text = _core.CurrentResult.Grade.ToString
+            lblPercentageGreenLossLevelValue.Text = _core.CurrentResult.PercentageGreenLossLevel.ToString("F3")
+            Select Case _core.CurrentResult.Grade
+                Case Result.GradeT.Passed : lblGradeValue.BackColor = _core.CurrentSettings.ColorPassed
+                Case Result.GradeT.Green : lblGradeValue.BackColor = _core.CurrentSettings.ColorGreen
+                Case Result.GradeT.Red : lblGradeValue.BackColor = _core.CurrentSettings.ColorRed
+                Case Result.GradeT.Rejected : lblGradeValue.BackColor = _core.CurrentSettings.ColorRejected
+                Case Result.GradeT.Yellow : lblGradeValue.BackColor = _core.CurrentSettings.ColorYellow
+                Case Result.GradeT.IOR
+                    lblGradeValue.BackColor = _core.CurrentSettings.ColorRed
+                    lblPercentageActualJValue.BackColor = _core.CurrentSettings.ColorRed
+                Case Else : lblGradeValue.BackColor = System.Drawing.SystemColors.Control
+            End Select
 
-        If _core.CurrentWorkOrder.Sample.SampleType = Sample.SampleTypeT.DgCore Then
-            lblATrmsOrAmpsValue.Text = _core.CurrentResult.AmpTurns.ToString("F3")
-            lblATrmsOrAmps.Text = My.Resources.Controls.sATrms
+            If _core.CurrentWorkOrder.Sample.SampleType = Sample.SampleTypeT.DgCore Then
+                lblATrmsOrAmpsValue.Text = _core.CurrentResult.AmpTurns.ToString("F3")
+                lblATrmsOrAmps.Text = My.Resources.Controls.sATrms
 
-            lblWattsOrVTrmsValue.Text = _core.CurrentResult.Watts.ToString("F3")
-            lblWattsOrVTrms.Text = My.Resources.Controls.sWatts
-        Else
-            lblATrmsOrAmpsValue.Text = _core.CurrentResult.Amps.ToString("F3")
-            lblATrmsOrAmps.Text = My.Resources.Controls.sAmps
+                lblWattsOrVTrmsValue.Text = _core.CurrentResult.Watts.ToString("F3")
+                lblWattsOrVTrms.Text = My.Resources.Controls.sWatts
+            Else
+                lblATrmsOrAmpsValue.Text = _core.CurrentResult.Amps.ToString("F3")
+                lblATrmsOrAmps.Text = My.Resources.Controls.sAmps
 
-            lblWattsOrVTrmsValue.Text = _core.CurrentResult.Volts.ToString("F3")
-            lblWattsOrVTrms.Text = My.Resources.Controls.sVolts
-        End If
+                lblWattsOrVTrmsValue.Text = _core.CurrentResult.Volts.ToString("F3")
+                lblWattsOrVTrms.Text = My.Resources.Controls.sVolts
+            End If
     End Sub
     Private Sub lblCurrentHarness_Refresh()
         lblCurrentHarness.Text = My.Resources.Controls.sHarness
-        tbCurrentHarness.Text = _core.CurrentSettings.HarnessDefaultN1.ToString + " : " +
+        tbCurrentHarness.Text = _core.CurrentSettings.HarnessDefaultN1.ToString + " : " + _
             _core.CurrentSettings.HarnessDefaultN2.ToString
     End Sub
 
@@ -358,17 +348,17 @@ Public Class GuiOperator
             Dim toroidWO As WorkOrderToroid = CType(_core.CurrentWorkOrder, WorkOrderToroid)
 
             If (toroidWO.OperatorNumberOfTurns <> toroidWO.NumberOfTurns) OrElse (_core.CurrentSettings.HarnessDefaultN1 <> _core.CurrentSettings.HarnessDefaultN2) Then
-                Dim msg As String = String.Format(My.Resources.Controls.sCheckHarnessWorkOrder,
-                                                  toroidWO.NumberOfTurns.ToString + ":" + toroidWO.NumberOfTurns.ToString,
-                                                  _core.CurrentSettings.HarnessDefaultN1.ToString + ":" +
+                Dim msg As String = String.Format(My.Resources.Controls.sCheckHarnessWorkOrder, _
+                                                  toroidWO.NumberOfTurns.ToString + ":" + toroidWO.NumberOfTurns.ToString, _
+                                                  _core.CurrentSettings.HarnessDefaultN1.ToString + ":" + _
                                                   _core.CurrentSettings.HarnessDefaultN2.ToString)
 
                 If MsgBox(msg, MsgBoxStyle.OkCancel, My.Resources.Controls.sCheckHarnessTitle) = MsgBoxResult.Cancel Then Exit Sub
             End If
         Else
             If _core.CurrentSettings.HarnessDefaultN1 = _core.CurrentSettings.HarnessDefaultN2 Then
-                Dim msg As String = String.Format(My.Resources.Controls.sCheckHarnessSettingsDgCore,
-                                                  _core.CurrentSettings.HarnessDefaultN1.ToString + ":" +
+                Dim msg As String = String.Format(My.Resources.Controls.sCheckHarnessSettingsDgCore, _
+                                                  _core.CurrentSettings.HarnessDefaultN1.ToString + ":" + _
                                                   _core.CurrentSettings.HarnessDefaultN2.ToString)
 
                 If MsgBox(msg, MsgBoxStyle.OkCancel, My.Resources.Controls.sCheckHarnessTitle) = MsgBoxResult.Cancel Then Exit Sub
@@ -424,6 +414,7 @@ Public Class GuiOperator
             Logger.Logger.Instance.Log(GetType(GuiOperator).ToString + ".RefreshContent_WorkOrderAndResults(): ", Logger.Logger.eStatus.Exception, ex)
         End Try
     End Sub
+
 
 #Region "AB Communication"  ' Entire Section added by VERGEER
 
@@ -609,6 +600,8 @@ Public Class GuiOperator
 
 
 #End Region
+
+
 
 
 End Class
