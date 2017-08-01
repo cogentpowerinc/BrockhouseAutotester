@@ -474,7 +474,7 @@ Public Class GuiOperator
                 lblCurrentResult_update()
 
                 If MyPLC.FromPLC.InitTest Then
-                    If MyPLC.FromPLC.Weight > 0.01 And MyPLC.FromPLC.Temp < 0.01 And MyPLC.FromPLC.SerialNumber = "" Then
+                    If MyPLC.FromPLC.Weight > 0.01 And MyPLC.FromPLC.Temp > 0.01 And MyPLC.FromPLC.SerialNumber <> "" Then
                         '  '   GET SERVER DATA
                         '   WAIT SERVER DATA  THEN SET READY TO TEST
                         MyPLC.ToPLC.ReadyToTest = True
