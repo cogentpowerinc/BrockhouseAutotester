@@ -175,6 +175,8 @@ Public Class GuiOperator
 
                                gbCurrentResult.Text = My.Resources.Controls.sResult + _core.CurrentWorkOrder.WorkOrderNo + "-" + _core.CurrentResult.Serial
 
+                               UpdateResults()  ' added by VERGEER
+
                            End Sub)
         Catch ex As Exception
             Logger.Logger.Instance.Log(GetType(GuiOperator).ToString + "._core_CurrentResultChanged(): ", Logger.Logger.eStatus.Exception, ex)
@@ -429,8 +431,7 @@ Public Class GuiOperator
 
         JobCheck_Tmr.Start()
 
-        DummyTimer.Interval = TimeSpan.FromMilliseconds(100)
-        AddHandler DummyTimer.Tick, AddressOf DummyTimer_Tick
+
         AddHandler myPLCTools.HeartBeat.Status, AddressOf HeartbeatChanged
 
     End Sub
@@ -441,22 +442,15 @@ Public Class GuiOperator
 
     End Sub
 
-    Private Shared DummyTimer As New DispatcherTimer()  'To be deleted
-    Private Sub DummyTimer_Tick(sender As Object, e As EventArgs)    'To be deleted 
-
-        If MyPLC.ToPLC.TestInProcess Then
-            MyPLC.ToPLC.ActualCoreLoss = 101.101
-            MyPLC.ToPLC.ActualAmpTurns = 201.201
-            MyPLC.ToPLC.TestInProcess = False
-            MyPLC.ToPLC.TestComplete = True
-
-            DummyTimer.Stop()
-        Else
-            MyPLC.ToPLC.TestInProcess = True
-        End If
 
 
+    Private Sub UpdateResults()
+        MyPLC.ToPLC.ActualCoreLoss = 101.101
+        MyPLC.ToPLC.ActualAmpTurns = _core.CurrentResult.Watts
+        MyPLC.ToPLC.TestInProcess = False
+        MyPLC.ToPLC.TestComplete = True
     End Sub
+
     Private Sub JobCheckTmr_Tick(sender As Object, e As EventArgs)
         Dim Success As Boolean = False
 
@@ -480,8 +474,7 @@ Public Class GuiOperator
                         MyPLC.ToPLC.ReadyToTest = True
                         If MyPLC.FromPLC.InitTest Then
                             If MyPLC.ToPLC.TestInProcess = False Then
-                                DummyTimer.Start()   ' Init Test.... dummy for now for testing purposes.
-                                '   StartMeasurement()   '  <-------------------------------------------------------------------   Actual INIT  -- MUST BE ENABLED
+                                StartMeasurement()   '  <-------------------------------------------------------------------   Actual INIT  -- MUST BE ENABLED
 
                             Else
                                 If MyPLC.ToPLC.TestComplete Or MyPLC.ToPLC.TestFailedToComplete Then
@@ -542,7 +535,7 @@ Public Class GuiOperator
                 MyPLC.ToPLC.ActualCoreLoss = -999.99
                 MyPLC.ToPLC.ActualAmpTurns = -999.99
                 MyPLC.ToPLC.ServerResult = -99
-                DummyTimer.Stop()
+
             End If
 
 
