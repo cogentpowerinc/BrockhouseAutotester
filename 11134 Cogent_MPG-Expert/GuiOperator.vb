@@ -598,6 +598,10 @@ Public Class GuiOperator
 
     End Sub
 
+    Private Sub lblStatus_Click(sender As Object, e As EventArgs) Handles lblStatus.Click
+
+    End Sub
+
 
 #End Region
 

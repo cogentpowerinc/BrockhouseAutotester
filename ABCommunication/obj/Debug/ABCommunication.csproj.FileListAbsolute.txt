@@ -9,3 +9,14 @@ C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\INGEAR.NET.Logix.dll
 C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.dll
 C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.pdb
 C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.csprojResolveAssemblyReference.cache
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\bin\Debug\nab6rt5015178.lic
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\bin\Debug\nlx6rt5015178.lic
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\bin\Debug\ABCommunication.dll
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\bin\Debug\ABCommunication.pdb
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\bin\Debug\log4net.dll
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\bin\Debug\Microsoft.Web.XmlTransform.dll
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\bin\Debug\NuGet.Core.dll
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\bin\Debug\log4net.xml
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.csprojResolveAssemblyReference.cache
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.dll
+C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.pdb
