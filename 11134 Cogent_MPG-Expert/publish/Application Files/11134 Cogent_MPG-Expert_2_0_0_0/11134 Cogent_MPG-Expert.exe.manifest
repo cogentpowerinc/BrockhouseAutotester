@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="11134 Cogent_MPG-Expert.exe" version="2.0.0.0" publicKeyToken="a745c0ac3d084950" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="Resources\MPG EXPERT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="11134 Cogent_MPG-Expert" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="11134 Cogent_MPG-Expert.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+             If you want to change the Windows User Account Control level replace the 
+             requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel element will disable file and registry virtualization. 
+            Remove this element if your application requires this virtualization for backwards
+            compatibility.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="11134 Cogent_MPG-Expert.exe" size="1046480">
+      <assemblyIdentity name="11134 Cogent_MPG-Expert" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>yHYQVqKG9YmdtcBY7ejKp+aV5+rIjSIHu9licDxZNco=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ABCommunication.dll" size="46080">
+      <assemblyIdentity name="ABCommunication" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>U1ybEhA34xHsnAVZMnka2Bi58DaiO+lzWqR6g1th/iE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataExchangeInterface.dll" size="28160">
+      <assemblyIdentity name="DataExchangeInterface" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>QJwEKHrbQ0Gqq9zxhnaxUnkBGAsbbdU3sdFph/TnfzE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DeployLX.Licensing.v5.dll" size="1112576">
+      <assemblyIdentity name="DeployLX.Licensing.v5" version="5.0.2000.0" publicKeyToken="798276055709C98A" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>QK9hdBuL5rf8wYEJ16O98IHogJiVhD0l+q+2pzj8Ph8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="INGEAR.NET.ABLink.dll" size="421888">
+      <assemblyIdentity name="INGEAR.NET.ABLink" version="6.0.0.0" publicKeyToken="F5734254522AB13D" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>fq2nZWUn6Nv616sapHnTXXfrnhOsk3RsAWCVLHYNWuo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="INGEAR.NET.Interfaces.dll" size="20480">
+      <assemblyIdentity name="INGEAR.NET.Interfaces" version="3.0.2010.714" publicKeyToken="AB5727B8D3226C58" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>bkmCw+k9CePJP41GyvefpQRmQ56fUXdB/bWq0RB0Z2g=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="INGEAR.NET.Logix.dll" size="348160">
+      <assemblyIdentity name="INGEAR.NET.Logix" version="6.0.0.0" publicKeyToken="3B3C756163ED13B4" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>FtzwdIBzFpnIhgL91vXtbd9AZ1SCEHK9fO74kTMBCZs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LabelPrinter.dll" size="26624">
+      <assemblyIdentity name="LabelPrinter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>9WGIfnOyz5/aesBfVacE0YlExOhSPqGV4MHfT2o6OCE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Logger.dll" size="23040">
+      <assemblyIdentity name="Logger" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>161BoSsJmj0BJ2elTdgD5IpFqHBQWr0ZJFj5PDQZs6s=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="11134 Cogent_MPG-Expert.exe.config" size="1363">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>3ZUPk88XSELeIYr8oQuEz6GPGrXGWXp1goQCGqZh3Zc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\MPG EXPERT.ico" size="38585">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>6QHBC4lravg2BfqRbE+LQXkm/Yy7XvnxtMYxHEdzl7E=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of the Windows versions that this application has been tested on and is
+           is designed to work with. Uncomment the appropriate elements and Windows will 
+           automatically selected the most compatible environment. -->
+      <!-- Windows Vista -->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+      <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=BSDNA\cvergeer" issuerKeyHash="fb4638ffb2c68d5e06532b7a477e7313322c633c" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>svClkmbXzkkrENiAZDqV2XO0r+ZY9/EIq2VuM58rP6Q=</DigestValue></Reference></SignedInfo><SignatureValue>eVx2CncB9XVxHwLi/W9ojGLBcYqtpQgdDAwNY5NfK85Zj5HuOJ+SLkmoVRUvhWHtPtQb4C+MROqqbtmnmRC8RDOtMErFixkVvViAx24Afi5MsI4+H1CQmpcLLDVxs2c1qjNHgw1ufoyukHxrv6/mEkQt2bcFJauBzePfQMqnvbE=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>0L/6CkbPaCYAgtUq5PyRQ9kpxUABUw2mLxOUEGL34YAfqtMjIrgDAXryvTumn9moHzW3RDB/YKxVq4XDvpEPCLjURiPtNstLYCExuKjURUSy3/qKz1Nhyez0QEnEsj5t8l1Z92as75mnMSN53Vh++PtJk5r6rZ/oYm4BjEG5TEM=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="a43f2b9f336e65ab08f1f758e6afb473d9953a6480d8102b49ced76692a5f0b2" Description="" Url=""><as:assemblyIdentity name="11134 Cogent_MPG-Expert.exe" version="2.0.0.0" publicKeyToken="a745c0ac3d084950" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=BSDNA\cvergeer</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>x5gjqEZLqDlG8rdjK5RZEWFiONU5ja5Bu/5dAFeL3Ws=</DigestValue></Reference></SignedInfo><SignatureValue>nG0weRCSiozcWOe1DzmNKmAJXjdNaEQ46VIBMSMEkILXu+OudfAgw4Fln/8lOfugRb9YGvRn5qEP+VXVu23CeVtNOJLSJkagUuwFhnHf55lL7nl1miZiKTs6jRZyiRc4rU2Qf4H/kekk8mofK4vuFw8Bblb+0cfZlNeLh8XsZaQ=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>0L/6CkbPaCYAgtUq5PyRQ9kpxUABUw2mLxOUEGL34YAfqtMjIrgDAXryvTumn9moHzW3RDB/YKxVq4XDvpEPCLjURiPtNstLYCExuKjURUSy3/qKz1Nhyez0QEnEsj5t8l1Z92as75mnMSN53Vh++PtJk5r6rZ/oYm4BjEG5TEM=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCATqgAwIBAgIQPqNnCWzzJI5NX5dkNo9qYjANBgkqhkiG9w0BAQsFADAnMSUwIwYDVQQDHhwAQgBTAEQATgBBAFwAYwB2AGUAcgBnAGUAZQByMB4XDTE3MDgxNDE4MzMxOFoXDTE4MDgxNTAwMzMxOFowJzElMCMGA1UEAx4cAEIAUwBEAE4AQQBcAGMAdgBlAHIAZwBlAGUAcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0L/6CkbPaCYAgtUq5PyRQ9kpxUABUw2mLxOUEGL34YAfqtMjIrgDAXryvTumn9moHzW3RDB/YKxVq4XDvpEPCLjURiPtNstLYCExuKjURUSy3/qKz1Nhyez0QEnEsj5t8l1Z92as75mnMSN53Vh++PtJk5r6rZ/oYm4BjEG5TEMCAwEAATANBgkqhkiG9w0BAQsFAAOBgQAJWBxTqXj4t2qK0Ltp1JTZqYlEvHVR/a9yBNkqf/Z0uSeddO0aVMqSAWWWASuC36l8e4y6/clRL/F5suJzRVGRLhl+CTAOz8UqTfOdda1J+wD6HcHDQdzVbMcVX/32jg8zgIuKe4kqL6SrPk4h3bLni59sJRO96Fcwu2isjYLxhA==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

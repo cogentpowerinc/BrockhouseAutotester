@@ -20,3 +20,7 @@ C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\bin\Debug\log4net.
 C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.csprojResolveAssemblyReference.cache
 C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.dll
 C:\Users\brock01\Desktop\BrockhouseAutotester\ABCommunication\obj\Debug\ABCommunication.pdb
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\log4net.dll
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\Microsoft.Web.XmlTransform.dll
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\NuGet.Core.dll
+C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Debug\log4net.xml

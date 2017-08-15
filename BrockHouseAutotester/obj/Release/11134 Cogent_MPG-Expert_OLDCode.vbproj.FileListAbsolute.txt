@@ -1,0 +1,23 @@
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\11134 Cogent_MPG-Expert.exe.config
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\11134 Cogent_MPG-Expert.exe
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\11134 Cogent_MPG-Expert.pdb
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\11134 Cogent_MPG-Expert.xml
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\ABCommunication.dll
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\DataExchangeInterface.dll
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\LabelPrinter.dll
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\Logger.dll
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\INGEAR.NET.Logix.dll
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\INGEAR.NET.ABLink.dll
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\INGEAR.NET.Interfaces.dll
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\DeployLX.Licensing.v5.dll
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\bin\Release\ABCommunication.pdb
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\11134 Cogent_MPG-Expert_OLDCode.vbprojResolveAssemblyReference.cache
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\GuiOperator.resources
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\GuiPrinter.resources
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\Resources.resources
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\Controls.resources
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\Settings.GuiSettings.resources
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\11134 Cogent_MPG-Expert_OLDCode.vbproj.GenerateResource.Cache
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\11134 Cogent_MPG-Expert.exe
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\11134 Cogent_MPG-Expert.xml
+C:\GitHub\BrockhouseAutotester\BrockHouseAutotester\obj\Release\11134 Cogent_MPG-Expert.pdb
