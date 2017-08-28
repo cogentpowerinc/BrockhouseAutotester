@@ -1,28 +1,24 @@
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.exe.config
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.exe
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.pdb
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.xml
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\ABCommunication.dll
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\DataExchangeInterface.dll
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\DeployLX.Licensing.v5.dll
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\INGEAR.NET.ABLink.dll
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\INGEAR.NET.Interfaces.dll
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\INGEAR.NET.Logix.dll
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\LabelPrinter.dll
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\Logger.dll
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\ABCommunication.pdb
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.vbprojResolveAssemblyReference.cache
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\GuiOperator.resources
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\GuiPrinter.resources
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\Resources.resources
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\Controls.resources
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\Settings.GuiSettings.resources
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.vbproj.GenerateResource.Cache
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.exe
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.xml
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.pdb
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.exe.manifest
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.application
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.TrustInfo.xml
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.exe.manifest
-C:\GitHub\BrockhouseAutotester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.application
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.exe.config
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.exe
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.pdb
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\11134 Cogent_MPG-Expert.xml
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\ABCommunication.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\DataExchangeInterface.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\DeployLX.Licensing.v5.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\INGEAR.NET.ABLink.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\INGEAR.NET.Interfaces.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\INGEAR.NET.Logix.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\LabelPrinter.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\Logger.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\bin\Release\ABCommunication.pdb
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.vbprojResolveAssemblyReference.cache
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\GuiOperator.resources
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\GuiPrinter.resources
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\Resources.resources
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\Controls.resources
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\Settings.GuiSettings.resources
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.vbproj.GenerateResource.Cache
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.vbproj.CoreCompileInputs.cache
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.exe
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.xml
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\11134 Cogent_MPG-Expert\obj\Release\11134 Cogent_MPG-Expert.pdb

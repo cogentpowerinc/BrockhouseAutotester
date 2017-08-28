@@ -173,6 +173,8 @@ Namespace DataExchange
                 End Try
             End Function
 
+
+
             Public Function GetCurrentUser() As String
                 Try
                     Dim obj As DataExchangeInterface.IOperating = _

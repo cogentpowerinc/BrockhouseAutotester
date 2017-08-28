@@ -31,21 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DeployLX.Licensing.v5, Version=5.0.2000.0, Culture=neutral, PublicKeyToken=798276055709c98a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files (x86)\INGEAR.NET\v5.0\Licensing\DeployLX.Licensing.v5.dll</HintPath>
+    <Reference Include="DeployLX.Licensing.v5">
+      <HintPath>.\DeployLX.Licensing.v5.dll</HintPath>
     </Reference>
     <Reference Include="INGEAR.NET.ABLink, Version=6.0.0.0, Culture=neutral, PublicKeyToken=f5734254522ab13d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\OvenTool\OvenTool\OvenTool\INGEAR.NET.ABLink.dll</HintPath>
+      <HintPath>.\INGEAR.NET.ABLink.dll</HintPath>
     </Reference>
-    <Reference Include="INGEAR.NET.Interfaces, Version=3.0.2010.714, Culture=neutral, PublicKeyToken=ab5727b8d3226c58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\OvenTool\OvenTool\OvenTool\INGEAR.NET.Interfaces.dll</HintPath>
+    <Reference Include="INGEAR.NET.Interfaces">
+      <HintPath>.\INGEAR.NET.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="INGEAR.NET.Logix, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\OvenTool\OvenTool\OvenTool\INGEAR.NET.Logix.dll</HintPath>
+    <Reference Include="INGEAR.NET.Logix">
+      <HintPath>.\INGEAR.NET.Logix.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\BrockHouseAutotester\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>

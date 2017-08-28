@@ -1,14 +1,12 @@
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\nab6rt5015178.lic
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\nlx6rt5015178.lic
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\ABCommunication.dll
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\ABCommunication.pdb
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\DeployLX.Licensing.v5.dll
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\INGEAR.NET.ABLink.dll
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\INGEAR.NET.Interfaces.dll
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\INGEAR.NET.Logix.dll
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\log4net.dll
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\Microsoft.Web.XmlTransform.dll
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\NuGet.Core.dll
-C:\GitHub\BrockhouseAutotester\ABCommunication\bin\Release\log4net.xml
-C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Release\ABCommunication.dll
-C:\GitHub\BrockhouseAutotester\ABCommunication\obj\Release\ABCommunication.pdb
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\bin\Release\nab6rt5015178.lic
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\bin\Release\nlx6rt5015178.lic
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\bin\Release\ABCommunication.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\bin\Release\ABCommunication.pdb
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\bin\Release\DeployLX.Licensing.v5.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\bin\Release\INGEAR.NET.ABLink.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\bin\Release\INGEAR.NET.Interfaces.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\bin\Release\INGEAR.NET.Logix.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\obj\Release\ABCommunication.csprojResolveAssemblyReference.cache
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\obj\Release\ABCommunication.csproj.CoreCompileInputs.cache
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\obj\Release\ABCommunication.dll
+C:\Users\brock01\Desktop\BrockHaus AutoTester\BrockHaus AutoTester\ABCommunication\obj\Release\ABCommunication.pdb

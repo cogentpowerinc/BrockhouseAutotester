@@ -14,6 +14,7 @@ Public Class GuiOperator
         ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
         _core = Core.Instance
         _core.Gui = Me
+
     End Sub
 
     Private Sub GuiOperator_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
@@ -21,6 +22,12 @@ Public Class GuiOperator
 
         lblStatus.Text = ""
         lblCurrentResult_clear()
+
+        '  _core.CurrentSettings.UserID = "billyp"
+        '  _core.CurrentSettings.Password = "nofish"
+
+
+
         tbOperator.Text = _core.GetCurrentUser
         If _core.GetCurrentUserRole <> "Administrator" Then tsbPrintSetup.Visible = False
 
@@ -434,6 +441,13 @@ Public Class GuiOperator
 
         AddHandler myPLCTools.HeartBeat.Status, AddressOf HeartbeatChanged
 
+
+
+        'to be removed
+        TestBypassed_Tmr.Interval = TimeSpan.FromSeconds(2)
+
+
+
     End Sub
 
 
@@ -445,11 +459,45 @@ Public Class GuiOperator
 
 
     Private Sub UpdateResults()
-        MyPLC.ToPLC.ActualCoreLoss = 101.101
+        MyPLC.ToPLC.ActualCoreLoss = _core.CurrentResult.PercentageActualJ
         MyPLC.ToPLC.ActualAmpTurns = _core.CurrentResult.Watts
         MyPLC.ToPLC.TestInProcess = False
         MyPLC.ToPLC.TestComplete = True
+        MyPLC.FromPLC.InitTest = False
+
+
+
     End Sub
+
+    Private Sub RepoCheck()
+        Dim SL As String
+        SL = MyPLC.FromPLC.SubLineNumber
+
+
+        Dim SBLIndex As Int32
+        SBLIndex = SL.Length - 1
+        If SBLIndex < 0 Then
+            SBLIndex = 0
+        End If
+        Dim chars As Char() = SL.ToCharArray()
+        If chars(SBLIndex) = "0" Then
+            If SBLIndex > 0 Then
+                SBLIndex = SBLIndex - 1
+
+            End If
+        End If
+        Dim tempInt As Integer
+        If Integer.TryParse(chars(SBLIndex), tempInt) Then
+            MyPLC.ToPLC.isRepo = True
+
+
+
+        Else
+            MyPLC.ToPLC.isRepo = False
+
+        End If
+    End Sub
+
 
     Private Sub JobCheckTmr_Tick(sender As Object, e As EventArgs)
         Dim Success As Boolean = False
@@ -460,12 +508,39 @@ Public Class GuiOperator
                 MyPLC.ToPLC.ReadyForData = True
 
                 'set up display
-                tbWorkOrder.Text = MyPLC.FromPLC.WorkOrder
-                tbSerialNumber.Text = MyPLC.FromPLC.SerialNumber
-                tbWeight.Text = MyPLC.FromPLC.Weight.ToString
+                Dim WO As String
+                Dim SN As String
 
-                RefreshWorkOrder()
-                lblCurrentResult_update()
+                Dim Weight As String
+                Dim ChangesDetect As Boolean
+                ChangesDetect = False
+
+                WO = MyPLC.FromPLC.WorkOrder
+                SN = MyPLC.FromPLC.SerialNumber
+
+                Weight = MyPLC.FromPLC.Weight.ToString
+
+                If WO <> tbWorkOrder.Text Then
+                    tbWorkOrder.Text = WO
+                    ChangesDetect = True
+
+                End If
+                If SN <> tbSerialNumber.Text Then
+                    tbSerialNumber.Text = SN
+                    ChangesDetect = True
+
+                End If
+                If Weight <> tbWorkOrder.Text Then
+                    tbWeight.Text = Weight
+                    ChangesDetect = True
+
+                End If
+                If ChangesDetect Then
+                    RefreshWorkOrder()
+                    lblCurrentResult_update()
+                End If
+
+
 
                 If MyPLC.FromPLC.InitTest Then
                     If MyPLC.FromPLC.Weight > 0.01 And MyPLC.FromPLC.Temp > 0.01 And MyPLC.FromPLC.SerialNumber <> "" Then
@@ -473,8 +548,19 @@ Public Class GuiOperator
                         '   WAIT SERVER DATA  THEN SET READY TO TEST
                         MyPLC.ToPLC.ReadyToTest = True
                         If MyPLC.FromPLC.InitTest Then
+                            MyPLC.FromPLC.InitTest = True
+
                             If MyPLC.ToPLC.TestInProcess = False Then
-                                StartMeasurement()   '  <-------------------------------------------------------------------   Actual INIT  -- MUST BE ENABLED
+                                MyPLC.ToPLC.TestInProcess = True
+                                RepoCheck()
+                                'remove the if... leave the ELSE case when log the button is removed.
+                                If TestBypassed Then
+                                    AddHandler TestBypassed_Tmr.Tick, AddressOf TestBypassed_Tmr_Tick
+                                    TestBypassed_Tmr.Start()
+                                Else
+                                    StartMeasurement()   '  <------------   Actual INIT  -- MUST BE ENABLED
+                                End If
+
 
                             Else
                                 If MyPLC.ToPLC.TestComplete Or MyPLC.ToPLC.TestFailedToComplete Then
@@ -510,7 +596,14 @@ Public Class GuiOperator
                         MyPLC.ToPLC.ErrorMsg = "No Weight and/or Temp And/or Serial Number At Init"
 
                     End If
+                Else
+                    MyPLC.ToPLC.ReadyForData = False
+                    MyPLC.ToPLC.ReadyToTest = False
 
+                    MyPLC.ToPLC.FetchingFromServer = False
+                    MyPLC.ToPLC.TestInProcess = False
+                    MyPLC.ToPLC.TestComplete = False
+                    tbSubLineNumber.Text = ""
                 End If
             Else
                 MyPLC.ToPLC.ReadyForData = False
@@ -520,6 +613,7 @@ Public Class GuiOperator
                 MyPLC.ToPLC.TestInProcess = False
                 MyPLC.ToPLC.TestComplete = False
                 MyPLC.ToPLC.TestFailedToComplete = False
+                tbSubLineNumber.Text = ""
                 If MyPLC.FromPLC.Reset Then
                     MyPLC.ToPLC.ErrorMsg = "RESETING"
                     tbWorkOrder.Text = ""
@@ -591,9 +685,39 @@ Public Class GuiOperator
 
     End Sub
 
-    Private Sub lblStatus_Click(sender As Object, e As EventArgs) Handles lblStatus.Click
+
+
+    Private Shared TestBypassed As New Boolean()
+    Private Shared TestBypassed_Tmr As New DispatcherTimer()
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnBypassTest.Click
+        TestBypassed = Not (TestBypassed)
+        If TestBypassed Then
+            btnBypassTest.BackColor = Color.LightGreen
+            btnBypassTest.Text = "Bypass Test MODE ON"
+        Else
+            btnBypassTest.BackColor = Color.LightBlue
+            btnBypassTest.Text = "Bypass Test MODE OFF"
+
+        End If
 
     End Sub
+
+    Private Sub TestBypassed_Tmr_Tick(sender As Object, e As EventArgs)
+
+        TestBypassed_Tmr.Stop()
+        RemoveHandler TestBypassed_Tmr.Tick, AddressOf TestBypassed_Tmr_Tick
+
+        MyPLC.ToPLC.ActualCoreLoss = 100
+        MyPLC.ToPLC.ActualAmpTurns = 100
+        MyPLC.ToPLC.TestInProcess = False
+        MyPLC.ToPLC.TestComplete = True
+        MyPLC.FromPLC.InitTest = False
+
+
+
+    End Sub
+
+
 
 
 #End Region

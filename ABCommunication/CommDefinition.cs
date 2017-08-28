@@ -56,7 +56,7 @@ namespace ABCommunication
         }
 
 
-        private string _IPAddress = "192.168.1.244";
+        private string _IPAddress = "172.16.1.101";
         public string IPAddress
         {
             get
@@ -199,6 +199,26 @@ namespace ABCommunication
             }
         }
         #endregion
+
+        #region SubLineNumber Region
+        private string _SubLineNumber_Address = "{Ch_AT_1_Ch}{Adrs_PROGRAM:Tester.BrockhouseInterface.FromCogent.SubLineNumber_Adrs}";
+        public string _SubLineNumber = "Not Init.";
+        public string SubLineNumber
+        {
+            get
+            {
+                if (PrimaryVariables.MasterLiveDataMode.State)
+                    _SubLineNumber = PLC.CommManager.GetPLCValue_STRING(_SubLineNumber_Address, out Success);
+                return _SubLineNumber;
+            }
+            set
+            {
+                _SubLineNumber = value;
+
+            }
+        }
+        #endregion
+
         #region Weight Region
         private string _Weight_Address = "{Ch_AT_1_Ch}{Adrs_PROGRAM:Tester.BrockhouseInterface.FromCogent.Weight_Adrs}";
         private double _Weight = -1;
@@ -600,6 +620,30 @@ namespace ABCommunication
                     _ActualAmpTurns = value;
                     if (PrimaryVariables.MasterLiveDataMode.State)
                         Success = PLC.CommManager.SetPLCValue(_ActualAmpTurns_Address, _ActualCoreLoss);
+                }
+
+            }
+        }
+
+        #endregion
+
+        #region isRepo Region
+
+        private string _isRepo_Address = "{Ch_AT_1_Ch}{Adrs_PROGRAM:Tester.BrockhouseInterface.ToCogent.IsRepo_Adrs}";
+        private bool _isRepo = false;
+        public bool isRepo
+        {
+            get
+            {
+                return _isRepo;
+            }
+            set
+            {
+                if (_isRepo != value)
+                {
+                    _isRepo = value;
+                    if (PrimaryVariables.MasterLiveDataMode.State)
+                        Success = PLC.CommManager.SetPLCValue(_isRepo_Address, _isRepo);
                 }
 
             }

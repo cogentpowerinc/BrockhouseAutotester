@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class GuiOperator
     Inherits System.Windows.Forms.Form
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class GuiOperator
     'Hinweis: Die folgende Prozedur ist für den Windows Form-Designer erforderlich.
     'Das Bearbeiten ist mit dem Windows Form-Designer möglich.  
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GuiOperator))
         Me.tbWorkOrder = New System.Windows.Forms.TextBox()
@@ -33,6 +33,7 @@ Partial Class GuiOperator
         Me.dgvResults = New System.Windows.Forms.DataGridView()
         Me.btnStart = New System.Windows.Forms.Button()
         Me.gbPrepare = New System.Windows.Forms.GroupBox()
+        Me.btnBypassTest = New System.Windows.Forms.Button()
         Me.rb_HeartBeat = New System.Windows.Forms.RadioButton()
         Me.Btn_AutoManualMode = New System.Windows.Forms.Button()
         Me.tbNumberOfCoreTested = New System.Windows.Forms.TextBox()
@@ -62,13 +63,13 @@ Partial Class GuiOperator
         Me.lblSerialNumber = New System.Windows.Forms.Label()
         Me.gbStatus = New System.Windows.Forms.GroupBox()
         Me.lblCustomerMessage = New System.Windows.Forms.Label()
+        Me.lblStatus = New System.Windows.Forms.Label()
         Me.tsMain = New System.Windows.Forms.ToolStrip()
         Me.tsbRefresh = New System.Windows.Forms.ToolStripButton()
         Me.tsbPrint = New System.Windows.Forms.ToolStripButton()
         Me.tsbPrintSetup = New System.Windows.Forms.ToolStripButton()
         Me.tsbSettings = New System.Windows.Forms.ToolStripButton()
         Me.pbLogo = New System.Windows.Forms.PictureBox()
-        Me.lblStatus = New System.Windows.Forms.Label()
         Me.gbWorkOrderInfo.SuspendLayout()
         Me.gbResults.SuspendLayout()
         CType(Me.dgvResults, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,7 +83,7 @@ Partial Class GuiOperator
         'tbWorkOrder
         '
         Me.tbWorkOrder.Location = New System.Drawing.Point(109, 48)
-        Me.tbWorkOrder.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tbWorkOrder.Margin = New System.Windows.Forms.Padding(4)
         Me.tbWorkOrder.Name = "tbWorkOrder"
         Me.tbWorkOrder.Size = New System.Drawing.Size(132, 22)
         Me.tbWorkOrder.TabIndex = 3
@@ -100,7 +101,7 @@ Partial Class GuiOperator
         'tbOperator
         '
         Me.tbOperator.Location = New System.Drawing.Point(109, 16)
-        Me.tbOperator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tbOperator.Margin = New System.Windows.Forms.Padding(4)
         Me.tbOperator.Name = "tbOperator"
         Me.tbOperator.ReadOnly = True
         Me.tbOperator.Size = New System.Drawing.Size(132, 22)
@@ -121,9 +122,9 @@ Partial Class GuiOperator
         Me.gbWorkOrderInfo.BackColor = System.Drawing.SystemColors.Control
         Me.gbWorkOrderInfo.Controls.Add(Me.pgOrderInfo)
         Me.gbWorkOrderInfo.Location = New System.Drawing.Point(709, 31)
-        Me.gbWorkOrderInfo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbWorkOrderInfo.Margin = New System.Windows.Forms.Padding(4)
         Me.gbWorkOrderInfo.Name = "gbWorkOrderInfo"
-        Me.gbWorkOrderInfo.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbWorkOrderInfo.Padding = New System.Windows.Forms.Padding(4)
         Me.gbWorkOrderInfo.Size = New System.Drawing.Size(423, 290)
         Me.gbWorkOrderInfo.TabIndex = 2
         Me.gbWorkOrderInfo.TabStop = False
@@ -136,7 +137,7 @@ Partial Class GuiOperator
         Me.pgOrderInfo.HelpVisible = False
         Me.pgOrderInfo.LineColor = System.Drawing.SystemColors.ControlDark
         Me.pgOrderInfo.Location = New System.Drawing.Point(4, 19)
-        Me.pgOrderInfo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pgOrderInfo.Margin = New System.Windows.Forms.Padding(4)
         Me.pgOrderInfo.Name = "pgOrderInfo"
         Me.pgOrderInfo.PropertySort = System.Windows.Forms.PropertySort.NoSort
         Me.pgOrderInfo.Size = New System.Drawing.Size(415, 267)
@@ -151,9 +152,9 @@ Partial Class GuiOperator
         Me.gbResults.BackColor = System.Drawing.SystemColors.Control
         Me.gbResults.Controls.Add(Me.dgvResults)
         Me.gbResults.Location = New System.Drawing.Point(0, 401)
-        Me.gbResults.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbResults.Margin = New System.Windows.Forms.Padding(4)
         Me.gbResults.Name = "gbResults"
-        Me.gbResults.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbResults.Padding = New System.Windows.Forms.Padding(4)
         Me.gbResults.Size = New System.Drawing.Size(1256, 570)
         Me.gbResults.TabIndex = 3
         Me.gbResults.TabStop = False
@@ -169,7 +170,7 @@ Partial Class GuiOperator
         Me.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvResults.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvResults.Location = New System.Drawing.Point(4, 19)
-        Me.dgvResults.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvResults.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvResults.MultiSelect = False
         Me.dgvResults.Name = "dgvResults"
         Me.dgvResults.ReadOnly = True
@@ -182,7 +183,7 @@ Partial Class GuiOperator
         'btnStart
         '
         Me.btnStart.Location = New System.Drawing.Point(551, 16)
-        Me.btnStart.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnStart.Margin = New System.Windows.Forms.Padding(4)
         Me.btnStart.Name = "btnStart"
         Me.btnStart.Size = New System.Drawing.Size(145, 57)
         Me.btnStart.TabIndex = 6
@@ -192,6 +193,7 @@ Partial Class GuiOperator
         'gbPrepare
         '
         Me.gbPrepare.BackColor = System.Drawing.SystemColors.Control
+        Me.gbPrepare.Controls.Add(Me.btnBypassTest)
         Me.gbPrepare.Controls.Add(Me.rb_HeartBeat)
         Me.gbPrepare.Controls.Add(Me.Btn_AutoManualMode)
         Me.gbPrepare.Controls.Add(Me.tbNumberOfCoreTested)
@@ -215,19 +217,30 @@ Partial Class GuiOperator
         Me.gbPrepare.Controls.Add(Me.lblWeight)
         Me.gbPrepare.Controls.Add(Me.lblSerialNumber)
         Me.gbPrepare.Location = New System.Drawing.Point(0, 31)
-        Me.gbPrepare.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbPrepare.Margin = New System.Windows.Forms.Padding(4)
         Me.gbPrepare.Name = "gbPrepare"
-        Me.gbPrepare.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbPrepare.Padding = New System.Windows.Forms.Padding(4)
         Me.gbPrepare.Size = New System.Drawing.Size(705, 290)
         Me.gbPrepare.TabIndex = 0
         Me.gbPrepare.TabStop = False
+        '
+        'btnBypassTest
+        '
+        Me.btnBypassTest.BackColor = System.Drawing.Color.LightBlue
+        Me.btnBypassTest.Location = New System.Drawing.Point(428, 81)
+        Me.btnBypassTest.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnBypassTest.Name = "btnBypassTest"
+        Me.btnBypassTest.Size = New System.Drawing.Size(68, 102)
+        Me.btnBypassTest.TabIndex = 87
+        Me.btnBypassTest.Text = "Bypass Test MODE OFF"
+        Me.btnBypassTest.UseVisualStyleBackColor = False
         '
         'rb_HeartBeat
         '
         Me.rb_HeartBeat.AutoSize = True
         Me.rb_HeartBeat.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.rb_HeartBeat.Location = New System.Drawing.Point(367, 151)
-        Me.rb_HeartBeat.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rb_HeartBeat.Margin = New System.Windows.Forms.Padding(4)
         Me.rb_HeartBeat.Name = "rb_HeartBeat"
         Me.rb_HeartBeat.Size = New System.Drawing.Size(17, 16)
         Me.rb_HeartBeat.TabIndex = 86
@@ -238,7 +251,7 @@ Partial Class GuiOperator
         '
         Me.Btn_AutoManualMode.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Btn_AutoManualMode.Location = New System.Drawing.Point(271, 81)
-        Me.Btn_AutoManualMode.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Btn_AutoManualMode.Margin = New System.Windows.Forms.Padding(4)
         Me.Btn_AutoManualMode.Name = "Btn_AutoManualMode"
         Me.Btn_AutoManualMode.Size = New System.Drawing.Size(135, 102)
         Me.Btn_AutoManualMode.TabIndex = 85
@@ -248,7 +261,7 @@ Partial Class GuiOperator
         'tbNumberOfCoreTested
         '
         Me.tbNumberOfCoreTested.Location = New System.Drawing.Point(428, 49)
-        Me.tbNumberOfCoreTested.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tbNumberOfCoreTested.Margin = New System.Windows.Forms.Padding(4)
         Me.tbNumberOfCoreTested.Name = "tbNumberOfCoreTested"
         Me.tbNumberOfCoreTested.ReadOnly = True
         Me.tbNumberOfCoreTested.Size = New System.Drawing.Size(68, 22)
@@ -267,7 +280,7 @@ Partial Class GuiOperator
         'tbCurrentHarness
         '
         Me.tbCurrentHarness.Location = New System.Drawing.Point(428, 17)
-        Me.tbCurrentHarness.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tbCurrentHarness.Margin = New System.Windows.Forms.Padding(4)
         Me.tbCurrentHarness.Name = "tbCurrentHarness"
         Me.tbCurrentHarness.ReadOnly = True
         Me.tbCurrentHarness.Size = New System.Drawing.Size(68, 22)
@@ -296,9 +309,9 @@ Partial Class GuiOperator
         Me.gbCurrentResult.Controls.Add(Me.lblGrade)
         Me.gbCurrentResult.Controls.Add(Me.lblPercentageGreenLossLevel)
         Me.gbCurrentResult.Location = New System.Drawing.Point(11, 191)
-        Me.gbCurrentResult.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbCurrentResult.Margin = New System.Windows.Forms.Padding(4)
         Me.gbCurrentResult.Name = "gbCurrentResult"
-        Me.gbCurrentResult.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbCurrentResult.Padding = New System.Windows.Forms.Padding(4)
         Me.gbCurrentResult.Size = New System.Drawing.Size(685, 49)
         Me.gbCurrentResult.TabIndex = 16
         Me.gbCurrentResult.TabStop = False
@@ -407,7 +420,7 @@ Partial Class GuiOperator
         'btnRemade
         '
         Me.btnRemade.Location = New System.Drawing.Point(593, 249)
-        Me.btnRemade.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnRemade.Margin = New System.Windows.Forms.Padding(4)
         Me.btnRemade.Name = "btnRemade"
         Me.btnRemade.Size = New System.Drawing.Size(104, 28)
         Me.btnRemade.TabIndex = 13
@@ -417,7 +430,7 @@ Partial Class GuiOperator
         'btnReprocessed
         '
         Me.btnReprocessed.Location = New System.Drawing.Point(445, 249)
-        Me.btnReprocessed.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnReprocessed.Margin = New System.Windows.Forms.Padding(4)
         Me.btnReprocessed.Name = "btnReprocessed"
         Me.btnReprocessed.Size = New System.Drawing.Size(104, 28)
         Me.btnReprocessed.TabIndex = 12
@@ -427,7 +440,7 @@ Partial Class GuiOperator
         'btnOverwrite
         '
         Me.btnOverwrite.Location = New System.Drawing.Point(301, 249)
-        Me.btnOverwrite.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnOverwrite.Margin = New System.Windows.Forms.Padding(4)
         Me.btnOverwrite.Name = "btnOverwrite"
         Me.btnOverwrite.Size = New System.Drawing.Size(104, 28)
         Me.btnOverwrite.TabIndex = 11
@@ -437,7 +450,7 @@ Partial Class GuiOperator
         'btnAbandon
         '
         Me.btnAbandon.Location = New System.Drawing.Point(157, 249)
-        Me.btnAbandon.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAbandon.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAbandon.Name = "btnAbandon"
         Me.btnAbandon.Size = New System.Drawing.Size(104, 28)
         Me.btnAbandon.TabIndex = 10
@@ -447,7 +460,7 @@ Partial Class GuiOperator
         'btnAccept
         '
         Me.btnAccept.Location = New System.Drawing.Point(12, 249)
-        Me.btnAccept.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAccept.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAccept.Name = "btnAccept"
         Me.btnAccept.Size = New System.Drawing.Size(104, 28)
         Me.btnAccept.TabIndex = 9
@@ -457,7 +470,7 @@ Partial Class GuiOperator
         'btnStop
         '
         Me.btnStop.Location = New System.Drawing.Point(551, 81)
-        Me.btnStop.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnStop.Margin = New System.Windows.Forms.Padding(4)
         Me.btnStop.Name = "btnStop"
         Me.btnStop.Size = New System.Drawing.Size(145, 57)
         Me.btnStop.TabIndex = 7
@@ -467,7 +480,7 @@ Partial Class GuiOperator
         'tbWeight
         '
         Me.tbWeight.Location = New System.Drawing.Point(109, 108)
-        Me.tbWeight.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tbWeight.Margin = New System.Windows.Forms.Padding(4)
         Me.tbWeight.Name = "tbWeight"
         Me.tbWeight.Size = New System.Drawing.Size(132, 22)
         Me.tbWeight.TabIndex = 5
@@ -475,7 +488,7 @@ Partial Class GuiOperator
         'tbSerialNumber
         '
         Me.tbSerialNumber.Location = New System.Drawing.Point(109, 78)
-        Me.tbSerialNumber.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tbSerialNumber.Margin = New System.Windows.Forms.Padding(4)
         Me.tbSerialNumber.Name = "tbSerialNumber"
         Me.tbSerialNumber.Size = New System.Drawing.Size(132, 22)
         Me.tbSerialNumber.TabIndex = 4
@@ -507,9 +520,9 @@ Partial Class GuiOperator
         Me.gbStatus.Controls.Add(Me.lblCustomerMessage)
         Me.gbStatus.Controls.Add(Me.lblStatus)
         Me.gbStatus.Location = New System.Drawing.Point(0, 329)
-        Me.gbStatus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbStatus.Margin = New System.Windows.Forms.Padding(4)
         Me.gbStatus.Name = "gbStatus"
-        Me.gbStatus.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gbStatus.Padding = New System.Windows.Forms.Padding(4)
         Me.gbStatus.Size = New System.Drawing.Size(1248, 64)
         Me.gbStatus.TabIndex = 10
         Me.gbStatus.TabStop = False
@@ -524,6 +537,18 @@ Partial Class GuiOperator
         Me.lblCustomerMessage.Name = "lblCustomerMessage"
         Me.lblCustomerMessage.Size = New System.Drawing.Size(0, 17)
         Me.lblCustomerMessage.TabIndex = 80
+        '
+        'lblStatus
+        '
+        Me.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStatus.ForeColor = System.Drawing.Color.Blue
+        Me.lblStatus.Location = New System.Drawing.Point(4, 19)
+        Me.lblStatus.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(1240, 41)
+        Me.lblStatus.TabIndex = 8
+        Me.lblStatus.Text = "Ready for operation"
         '
         'tsMain
         '
@@ -573,24 +598,12 @@ Partial Class GuiOperator
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbLogo.Image = Global.My.Resources.Resources.BM_Logo_E
         Me.pbLogo.Location = New System.Drawing.Point(1136, 31)
-        Me.pbLogo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbLogo.Margin = New System.Windows.Forms.Padding(4)
         Me.pbLogo.Name = "pbLogo"
         Me.pbLogo.Size = New System.Drawing.Size(120, 156)
         Me.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbLogo.TabIndex = 1
         Me.pbLogo.TabStop = False
-        '
-        'lblStatus
-        '
-        Me.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatus.ForeColor = System.Drawing.Color.Blue
-        Me.lblStatus.Location = New System.Drawing.Point(4, 19)
-        Me.lblStatus.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(1240, 41)
-        Me.lblStatus.TabIndex = 8
-        Me.lblStatus.Text = "Ready for operation"
         '
         'GuiOperator
         '
@@ -605,7 +618,7 @@ Partial Class GuiOperator
         Me.Controls.Add(Me.gbWorkOrderInfo)
         Me.Controls.Add(Me.pbLogo)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "GuiOperator"
         Me.Text = "Cogent MPG-Expert"
         Me.gbWorkOrderInfo.ResumeLayout(False)
@@ -670,4 +683,5 @@ Partial Class GuiOperator
     Friend WithEvents rb_HeartBeat As RadioButton
     Friend WithEvents Btn_AutoManualMode As Button
     Friend WithEvents lblStatus As Label
+    Friend WithEvents btnBypassTest As Button
 End Class
